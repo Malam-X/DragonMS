@@ -25,6 +25,7 @@ from tools.net.scrap import mainscrap
 from tools.net.scanner import mainscan
 from tools.net.scrap import main_scraper
 from tools.net.scrap import stat
+from tools.track.cybercrime import main_track
 import sys,os
 import socket
 import time
@@ -79,7 +80,7 @@ def main_tools():
         elif (x == '1') or (x == '01'):
             tools_list()
         elif (x == '2') or (x == '02'):
-            os.system('python3 tools/track/cybercrime.py')
+            main_track()
         elif (x == '3') or (x == '03'):
             mainscan()
         elif (x == '4') or (x == '04'):
