@@ -9,6 +9,7 @@ def list_tools():
     \u001b[1m[\u001b[32;1m07\u001b[0m\u001b[1m]\u001b[0m Android ......... Android Paylaod
     \u001b[1m[\u001b[36mSTART\u001b[0m\u001b[1m]\u001b[0m START ........ METASPLOIT CONSOLE
     \u001b[1m[\u001b[36mINSTALL\u001b[0m\u001b[1m]\u001b[0m INSTALL .... INSTALL METASPLOIT
+    \u001b[1m[\u001b[36m00\u001b[0m\u001b[1m]\u001b[0m Back to main
   ''')
 
 
@@ -65,3 +66,17 @@ def list_Android():
     print('''
   \u001b[1m[\u001b[32;1m01\u001b[0m\u001b[1m]\u001b[0m Android Meterpreter Reverse TCP Shell
   ''')
+
+def pen_tools():
+  print('''
+  \u001b[1m[\u001b[32;1m01\u001b[0m\u001b[1m]\u001b[0m DDOS ......... [\u001b[32;1m✔\u001b[0m]
+  \u001b[1m[\u001b[32;1m02\u001b[0m\u001b[1m]\u001b[0m TRACKER ...... [\u001b[32;1m✔\u001b[0m]
+  \u001b[1m[\u001b[32;1m03\u001b[0m\u001b[1m]\u001b[0m SCANNER ...... [\u001b[32;1m✔\u001b[0m]
+  \u001b[1m[\u001b[32;1m04\u001b[0m\u001b[1m]\u001b[0m SCRAPER ...... [\u001b[32;1m✔\u001b[0m]
+  \u001b[1m[\u001b[36m00\u001b[0m\u001b[1m]\u001b[0m Back to main\n''')
+
+def small_tools():
+  print('''
+  \u001b[1m[\u001b[32;1m01\u001b[0m\u001b[1m]\u001b[0m URL SHORTENER ..... [\u001b[32;1m✔\u001b[0m]
+  \u001b[1m[\u001b[32;1m02\u001b[0m\u001b[1m]\u001b[0m BITCOIN MINER ..... [\u001b[32;1m✔\u001b[0m]
+  \u001b[1m[\u001b[36m00\u001b[0m\u001b[1m]\u001b[0m Back to main\n''')
