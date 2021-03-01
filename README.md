@@ -16,7 +16,7 @@
 -   MxLinux
 
 ### Features
-<br>
+
 -   Payload Msfvenom/Metasploit
     -   Windows
     -   Linux
@@ -24,7 +24,7 @@
     -   Macs
     -   Scripts
     -   Shells
-    -   Website<br>
+    -   Website
 
 -   DDOS
 -   SCANNER
