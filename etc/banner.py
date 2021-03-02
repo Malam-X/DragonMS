@@ -1,3 +1,6 @@
+
+from etc.version import __version__
+
 G= '\u001b[32;1m'
 End=  '\u001b[0m'
 def banner_drgn():
@@ -20,8 +23,8 @@ _#/|##########/\######(   /\   )######/\##########|\#_
                   (vvv(VVV)(VVV)vvv)'''+End)
     print('''
           \u001b[32;1m-----|\u001b[0m       \u001b[7mDragonMS\u001b[0m       \u001b[32;1m|-----\u001b[0m
-           Author  : \u001b[34;1mMr.DR4G0N5\u001b[0m
+           Author  : \u001b[34;1mDR4G0N5\u001b[0m
            Github  : \u001b[4mhttps://github.com/Malam-X\u001b[0m
-           Version : 0.1 (TERBARU)
+           Version : {} (TERBARU)
           \u001b[32;1m-----|\u001b[0m  \u001b[44;1mCyber Dakwah Jatim\u001b[0m  \u001b[32;1m|-----\u001b[0m
- ''')
+ '''.format(__version__))
