@@ -1,11 +1,15 @@
 ### :star: DragonMS
 
-
-![Malam-X](https://komarev.com/ghpvc/?username=Malam-X&label=Views&color=blue&style=plastic)<br>
-[![Version](https://img.shields.io/badge/Version-v0.2-blue)]()
-[![Python](https://img.shields.io/badge/Python-v3.7%2B-blue)]()
+<div align="center">
+  <p align="center">
+    <a href="https://pypi.org/project/python-lambda/"><img src="https://img.shields.io/pypi/dm/python-lambda.svg" alt="pypi"></a>
+	  <a href="https://pypi.python.org/pypi/python-lambda/"><img src="https://img.shields.io/pypi/pyversions/python-lambda.svg" /></a>
+      ![Malam-X](https://komarev.com/ghpvc/?username=Malam-X&label=Views&color=blue&style=plastic)
+        [![Version](https://img.shields.io/badge/Version-v0.2-blue)]()
+        [![Python](https://img.shields.io/badge/Python-v3.7%2B-blue)]()
+    </p>
+</div>
 <br><br>
-
 ### Requirements
 
 -   Python 3.7+
