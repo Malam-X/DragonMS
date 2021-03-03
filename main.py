@@ -26,7 +26,7 @@ from tools.net.scanner import mainscan
 from tools.net.scrap import main_scraper
 from tools.net.scrap import stat
 from tools.net.scrap import youtube_scr
-from tools.net.mapper import main_map
+#from tools.net.mapper import main_map
 import sys,os
 import socket
 import time
