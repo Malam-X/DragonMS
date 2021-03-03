@@ -149,16 +149,13 @@ def main_tools():
                         except KeyboardInterrupt:
                             sys.exit(Aborted)
                     elif x == '5':
-                        youtube_t()
                         try:
-                            def youtube_t():
                                 urls = input(f'{PULS} Youtube Link: ')
                                 if 'https://www.youtube.com/' not in urls:
                                     sys.exit(f'{ERROR_SYM} Try again.')
                                     time.sleep(1)
                                     clear()
                                     banner_drgn()
-                                    youtube_t()
                                 else:
                                     youtube_scr(urls)
                         except ValueError:
