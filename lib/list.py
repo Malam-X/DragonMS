@@ -73,6 +73,7 @@ def pen_tools():
   \u001b[1m[\u001b[32;1m02\u001b[0m\u001b[1m]\u001b[0m TRACKER ...... [\u001b[32;1m✔\u001b[0m]
   \u001b[1m[\u001b[32;1m03\u001b[0m\u001b[1m]\u001b[0m SCANNER ...... [\u001b[32;1m✔\u001b[0m]
   \u001b[1m[\u001b[32;1m04\u001b[0m\u001b[1m]\u001b[0m SCRAPER ...... [\u001b[32;1m✔\u001b[0m]
+  \u001b[1m[\u001b[32;1m05\u001b[0m\u001b[1m]\u001b[0m MAPPER ....... [\u001b[32;1m✔\u001b[0m]
   \u001b[1m[\u001b[36m00\u001b[0m\u001b[1m]\u001b[0m Back to main\n''')
 
 def small_tools():
