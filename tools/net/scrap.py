@@ -9,6 +9,7 @@ import instaloader
 import getpass
 import twint
 import pandas as pd
+from pytube import YouTube
 from collections import Counter
 from bs4 import BeautifulSoup
 from etc.set import *
@@ -220,3 +221,15 @@ def stat(named):
     except KeyboardInterrupt:
 
         sys.exit(Aborted)
+def youtube_scr(url):
+    don = YouTube(url)
+    print(f"""
+[+] Title       : {don.title}
+[+] Views       : {don.views}
+[+] Duration    : {don.length}
+[+] Description : {don.description}
+[+] Ratings     : {don.rating}
+        """)
+    stream = don.streams.get_highest_resolution()
+    stream.download()
+    print(f"{PULS} Download completed!!")
