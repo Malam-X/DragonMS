@@ -1,19 +1,21 @@
 ### :star: DragonMS
 
-
+<center>
 ![Malam-X](https://komarev.com/ghpvc/?username=Malam-X&label=Views&color=blue&style=plastic)<br>
 [![Version](https://img.shields.io/badge/Version-v0.2-blue)]()
 [![Python](https://img.shields.io/badge/Python-v3.7%2B-blue)]()
+</center>
 <br><br>
 
 ### Requirements
 
 -   Python 3.7+
 
-### Tested
+### Tested On
 
 -   Windows 10
 -   MxLinux
+-   Ubuntu
 
 ### Features
 
@@ -25,8 +27,9 @@
     -   Scripts
     -   Shells
     -   Website
-
 -   DDOS
+    -   UDP FLOOD(Python, Perl)
+    -   HTTP FLOOD(Golang)
 -   SCANNER
 -   SCRAPING
     -   Web Scraping
@@ -45,11 +48,7 @@
 ```
   git clone https://github.com/Malam-X/DragonMS
   cd DragonMS
-  python3 req.py
+  python3 main.py
 ```
 <br>
 <br>
-
-### Contacts<br>
-Email: antitidur23@gmail.com<br>
-Whatsapp: +6285731246143
