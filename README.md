@@ -34,8 +34,8 @@
     -   Web Scraping
     -   Instagram Scraping
     -   Twitter Scraping
-    -   Wikipedia Sraping<br>
-
+    -   Wikipedia Sraping
+    -   Youtube Scraping
 -   Bitcoin Mining
 -   Url shortener
 -   Track
