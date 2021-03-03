@@ -2,9 +2,7 @@
 
 <div align="center">
   <p align="center">
-    <a href="https://pypi.org/project/python-lambda/"><img src="https://img.shields.io/pypi/dm/python-lambda.svg" alt="pypi"></a>
-	<a href="https://pypi.python.org/pypi/python-lambda/"><img src="https://img.shields.io/pypi/pyversions/python-lambda.svg" /></a>
-      	<a href="https://komarev.com/ghpvc/?username=Malam-X&label=Views&color=blue&style=plastic"></a>
+      	<a src="https://komarev.com/ghpvc/?username=Malam-X&label=Views&color=blue&style=plastic"></a>
         <a [![Version](https://img.shields.io/badge/Version-v0.2-blue)]()
         [![Python](https://img.shields.io/badge/Python-v3.7%2B-blue)]()
     </p>
