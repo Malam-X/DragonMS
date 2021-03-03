@@ -1,9 +1,8 @@
 ### :star: DragonMS
 
-<div align="center">
-        <a src="https://komarev.com/ghpvc/?username=Malam-X&label=Views&color=blue&style=plastic"></a>
-        <a [![Version](https://img.shields.io/badge/Version-v0.2-blue)]()
-           [![Python](https://img.shields.io/badge/Python-v3.7%2B-blue)]()</div>
+[![view](]https://komarev.com/ghpvc/?username=Malam-X&label=Views&color=blue&style=plastic)]()
+[![Version](https://img.shields.io/badge/Version-v0.2-blue)]()
+[![Python](https://img.shields.io/badge/Python-v3.7%2B-blue)]()
 <br><br>
 ### Requirements
 
