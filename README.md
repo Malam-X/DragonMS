@@ -1,12 +1,9 @@
 ### :star: DragonMS
 
 <div align="center">
-  <p align="center">
-      	<a src="https://komarev.com/ghpvc/?username=Malam-X&label=Views&color=blue&style=plastic"></a>
+        <a src="https://komarev.com/ghpvc/?username=Malam-X&label=Views&color=blue&style=plastic"></a>
         <a [![Version](https://img.shields.io/badge/Version-v0.2-blue)]()
-        [![Python](https://img.shields.io/badge/Python-v3.7%2B-blue)]()
-    </p>
-</div>
+           [![Python](https://img.shields.io/badge/Python-v3.7%2B-blue)]()</div>
 <br><br>
 ### Requirements
 
