@@ -10,7 +10,7 @@
 
 import os
 import sys
-import socket, socks
+import socket
 import threading
 import time
 import random
