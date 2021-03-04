@@ -1,6 +1,6 @@
 ## ***:star: DragonMS***
 
-![Malam-X](https://komarev.com/ghpvc/?username=Malam-X&label=Views&color=blue&style=plastic)<br>
+![Malam-X](https://komarev.com/ghpvc/?username=Malam-X&label=Views&color=blue&style=plastic)
 [![Version](https://img.shields.io/badge/Version-v0.2-blue)]()
 [![Python](https://img.shields.io/badge/Python-v3.7%2B-blue)]()
 <br><br>
