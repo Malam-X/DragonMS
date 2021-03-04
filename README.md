@@ -51,6 +51,8 @@
 ###### *Install requirements*
 ```
     bash install.sh
+    OR
+    pip3 install -r requirements.txt
 ```
 ###### *Run DragonMS*
 ```
