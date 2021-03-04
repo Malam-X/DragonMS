@@ -1,4 +1,4 @@
-## ***:star: DragonMS**
+## ***:star: DragonMS***
 <p align="center">
   <img src="https://img.shields.io/badge/Version-v0.2-blue">
   <img src="https://img.shields.io/badge/Python-v3.7%2B-blue">
