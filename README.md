@@ -45,6 +45,7 @@
 ```
   git clone https://github.com/Malam-X/DragonMS
   cd DragonMS
+  python3 req.py
   python3 main.py
 ```
 <br>
