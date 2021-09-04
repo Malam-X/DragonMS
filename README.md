@@ -51,12 +51,13 @@
     -   Web Cloning Using wget
     -   Mass WP Shell uploader
 <br>
+
 # INSTALLER
 
 #### Install Python3
 `   sudo apt install python3`
 #### Install PIP
-`   sudo apt install python-pip`
+`   sudo apt install python3-pip`
 #### Install Golang
 `   sudo apt-get install golang-go`
 
@@ -73,6 +74,7 @@
 ```
 <br>
 <br>
+
 ```
     Disclaimer:- This project was created for educational purposes and
     should not be used in environments without legal authorization. 
