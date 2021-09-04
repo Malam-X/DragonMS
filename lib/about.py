@@ -6,14 +6,13 @@ from etc.version import *
 
 def about_me():
     print(f'''
-  Welcome {hostname}
-  Thanks for using DragonMS
-
-  Tools ini hanya untuk pembelajaran!
-  Anda bisa kembangin sendiri.
-
-  Nama Tools  : DragonMS
+  Name Tools  : DragonMS
   Credits     : DR4G0N5, LeeOn, Aman
   Version     : {__version__}
+
+  ===================================
+
+    UPDATE LOGS:
+      - [NEWS] Pentesting Tools
 
   ''')

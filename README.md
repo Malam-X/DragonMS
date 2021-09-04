@@ -14,12 +14,14 @@
 ## Requirements
 
 -   Python 3.7+
+-   Golang
 
 ## Tested On
 
 -   Windows 10
 -   MxLinux
 -   Ubuntu
+-   Debian/Parrot OS
 
 ## Features
 
@@ -32,7 +34,7 @@
     -   Shells
     -   Website
 -   DDOS
-    -   UDP FLOOD(Python, Perl)
+    -   UDP FLOOD
     -   HTTP FLOOD(Golang)
 -   SCANNER
 -   SCRAPING
@@ -45,20 +47,25 @@
 -   Url shortener
 -   Track
     -   Cyber-crime API
-<br><br>
+-   Pentesting Tools
+    -   Web Cloning Using wget
+    -   Mass WP Shell uploader
+<br>
+# INSTALLER
 
-## Install
+#### Install Python3
+`   sudo apt install python3`
+#### Install PIP
+`   sudo apt install python-pip`
+#### Install Golang
+`   sudo apt install go`
+
+## Clong this repository
 
 ###### *Cloning*
 ```
     git clone https://github.com/Malam-X/DragonMS
     cd DragonMS
-```
-###### *Install requirements*
-```
-    bash install.sh
-    OR
-    pip3 install -r requirements.txt
 ```
 ###### *Run DragonMS*
 ```
@@ -66,3 +73,8 @@
 ```
 <br>
 <br>
+```
+    Disclaimer:- This project was created for educational purposes and
+    should not be used in environments without legal authorization. 
+    Author will be not responsible for any damage!
+```
