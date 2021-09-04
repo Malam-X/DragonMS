@@ -58,7 +58,7 @@
 #### Install PIP
 `   sudo apt install python-pip`
 #### Install Golang
-`   sudo apt install go`
+`   sudo apt-get install golang-go`
 
 ## Clong this repository
 
