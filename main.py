@@ -81,7 +81,7 @@ try:
     init(autoreset=True)
     requests.packages.urllib3.disable_warnings()
 except ImportError:
-    print('[!] Please install Some requirements.\n %s[+] Press Enter for Installer!\n %s[!] CTRL+C For Exit!'%(Fore.RED,Fore.GREEN))
+    print('[!] Please install Some requirements.\n [+] Press Enter for Installer!\n [!] CTRL+C For Exit!')
     xxXxxxxx = input_drg('')
     if '' in xxXxxxxx:
         INSTALLER()
