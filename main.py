@@ -43,7 +43,7 @@ def INSTALLER():
                 if(sys.version_info[0] < 3):
                     os.system('cd C:\Python27\Scripts & pip install {}'.format(MODULES))
                 else :
-                    os.system('py -m pip install {}'.format(MODULES))
+                    os.system('pip install {}'.format(MODULES))
                 print(' [+] {} has been installed successfully, Restart the program.'.format(MODULES))
                 print(' ')
             except:
@@ -82,7 +82,7 @@ try:
     requests.packages.urllib3.disable_warnings()
 except ImportError:
     print('[!] Please install Some requirements.\n [+] Press Enter for Installer!\n [!] CTRL+C For Exit!')
-    xxXxxxxx = input_drg('')
+    xxXxxxxx = input('')
     if '' in xxXxxxxx:
         INSTALLER()
     else:
