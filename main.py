@@ -14,7 +14,7 @@
 # - Ubuntu 18 LTS
 # =================================================================
 # Author/Programmed   : DR4G0N5 / TEMO
-# Greetz to dark coder: b4ltazar, d3hydr8, LordB0N3 and member TNA
+# Greetz to dark coder: b4ltazar, d3hydr8
 # Credits             : LeeOn, Aman, Makman, LAKER
 # =================================================================
 # any issues with our tools?
@@ -35,14 +35,19 @@ from lib.tools.Shell import back_shell
 from lib.tools.Android import back_android
 from lib.list import *
 def INSTALLER():
-    try :
+    os.system('pip install kivy')
+    try:
         MODULESs = ['requests', 'hashlib', 'pytube', 'pandas', 'bs4', 'colorama', 'twint', 'wikipedia', 
         'cybercrimetracker', 'scapy', 'instaloader', 'wget']
+        ADRN = ['requests', 'hashlib', 'pytube', 'pandas', 'bs4', 'colorama', 'twint', 'wikipedia', 
+        'cybercrimetracker', 'scapy', 'wget']
         for MODULES in MODULESs:
             try:
                 if(sys.version_info[0] < 3):
                     os.system('cd C:\Python27\Scripts & pip install {}'.format(MODULES))
-                else :
+                elif Kivy_Platform == 'android':
+                    os.system('pip install {}'.format(ADRN))
+                else:
                     os.system('pip install {}'.format(MODULES))
                 print(' [+] {} has been installed successfully, Restart the program.'.format(MODULES))
                 print(' ')
@@ -77,11 +82,12 @@ try:
     from urllib.parse import urlparse
     from urllib.parse import urlencode
     from urllib.request import urlopen
+    from kivy.utils import platform as Kivy_Platform
     from cybercrimetracker.cybercrimeTrackerAPI import cybercrimeTrackerAPI
     init(autoreset=True)
     requests.packages.urllib3.disable_warnings()
 except ImportError:
-    print('[!] Please install Some requirements.\n [+] Press Enter for Installer!\n [!] CTRL+C For Exit!')
+    print(' [!] Please install Some requirements.\n [+] Press Enter for Installer!\n [!] CTRL+C For Exit!')
     xxXxxxxx = input('')
     if '' in xxXxxxxx:
         INSTALLER()
@@ -198,7 +204,6 @@ ua = ["Mozilla/5.0 (Android; Linux armv7l; rv:10.0.1) Gecko/20100101 Firefox/10.
     "Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/532.9 (KHTML, like Gecko) Chrome/5.0.309.0 Safari/532.9",
     "Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.15 (KHTML, like Gecko) Chrome/10.0.613.0 Safari/534.15"]
 
-bot = instaloader.Instaloader()
 #==================
 promt_choice = ' \u001b[1m[\u001b[32;1m+\u001b[0m\u001b[1m] Choice\u001b[0m: '
 promt_target = ' \u001b[1m[\u001b[32;1m+\u001b[0m\u001b[1m] Target\u001b[0m: '
@@ -353,7 +358,7 @@ def about_me():
    Version     : {Tools_Version}
    Website     : http://animcra.tech
    Friends     : SaklarRusak, K4PUYU4K
-   Team        : Night Cracker - TSecNetwork
+   Team        : TSecNetwork - Night Cracker
    GitHub      : https://github.com/malam-x
 
   ============================================
@@ -375,7 +380,7 @@ def about_me():
   '''
     for zxxxx in ABOUT_US_UPD.split("\n"):
         print(zxxxx)
-        time.sleep(0.3)
+        time.sleep(0.5)
 
 def banner_drgn():
     BANNER = """ 
@@ -667,10 +672,14 @@ def main_tools():
                             Scraper(scr).scrape()"""
 
                     elif x == 1:
-                        def ig_info(users):
-                            try:
-                                profile = instaloader.Profile.from_username(bot.context, f'{users}')
-                                x = (f"""
+                        if Kivy_Platform == 'android':
+                            sys.exit('Android Not Support!') 
+                        else:
+                            bot = instaloader.Instaloader()
+                            def ig_info(users):
+                                try:
+                                    profile = instaloader.Profile.from_username(bot.context, f'{users}')
+                                    x = (f"""
     ==========| INSTAGRAM INFO |===========
         [+] Username   : {profile.username}
         [+] User ID    : {profile.userid}
@@ -679,128 +688,128 @@ def main_tools():
         [+] Bio        : {profile.biography,profile.external_url}
         [+] Total Post : {profile.mediacount}
     =======================================""")
-                                NAME_PATH = 'result/ig_scrap.txt'
-                                with open(f'{NAME_PATH}', 'w') as wr:
-                                    wr.write(x)
-                                print(f'{SUCES_SYM} Logs saved at [ {NAME_PATH} ]')
-                            except:
-                                sys.exit(f'{ERROR_SYM} Username not found!')
+                                    NAME_PATH = 'result/ig_scrap.txt'
+                                    with open(f'{NAME_PATH}', 'w') as wr:
+                                        wr.write(x)
+                                    print(f'{SUCES_SYM} Logs saved at [ {NAME_PATH} ]')
+                                except:
+                                    sys.exit(f'{ERROR_SYM} Username not found!')
 
-                        def ig_login():
-                            try:
-                                us = input_drg(f'{PULS} Username: ')
-                                pw = getpass.getpass(f'{PULS} Password: ')
-                                bot.login(user=f"{us}",passwd=f"{pw}")
-                                bot.interactive_login(f"{us}")
-                            except:
-                                sys.exit(f'{ERROR_SYM} Wrong Password / Username.')
+                            def ig_login():
+                                try:
+                                    us = input_drg(f'{PULS} Username: ')
+                                    pw = getpass.getpass(f'{PULS} Password: ')
+                                    bot.login(user=f"{us}",passwd=f"{pw}")
+                                    bot.interactive_login(f"{us}")
+                                except:
+                                    sys.exit(f'{ERROR_SYM} Wrong Password / Username.')
 
-                        def scrap_foll():
-                            clear()
-                            banner_ms()
-                            res = int(input_drg(f'{PULS} Instagram Name: '))
-                            print(' %s Scraping Followers'%MAIN_LIST('01'))
-                            print(' %s Scraping Followees'%MAIN_LIST('02'))
-                            try:
-                                profile = instaloader.Profile.from_username(bot.context, f'{res}')
-                                followers = [follower.username for follower in profile.get_followers()]
-                                followees = [followee.username for followee in profile.get_followees()]
-                                x = int(input_drg(promt_choice))
-                                if x == 1:print(followers)
-                                elif x == 2:print(followees)
-                                else:raise ValueError(f'{ERRORS} INVALID VALUE.')
-                            except:
-                                sys.exit(f'{ERRORS} Login Needed.')
+                            def scrap_foll():
+                                clear()
+                                banner_ms()
+                                res = int(input_drg(f'{PULS} Instagram Name: '))
+                                print(' %s Scraping Followers'%MAIN_LIST('01'))
+                                print(' %s Scraping Followees'%MAIN_LIST('02'))
+                                try:
+                                    profile = instaloader.Profile.from_username(bot.context, f'{res}')
+                                    followers = [follower.username for follower in profile.get_followers()]
+                                    followees = [followee.username for followee in profile.get_followees()]
+                                    x = int(input_drg(promt_choice))
+                                    if x == 1:print(followers)
+                                    elif x == 2:print(followees)
+                                    else:raise ValueError(f'{ERRORS} INVALID VALUE.')
+                                except:
+                                    sys.exit(f'{ERRORS} Login Needed.')
 
-                        def ig_downloader(users):
-                            profile = instaloader.Profile.from_username(bot.context, 'users')
-                            posts = profile.get_posts()
-                            for index, post in enumerate(posts, 1):
-                                bot.download_post(post, target=f"{profile.username}_{index}")
+                            def ig_downloader(users):
+                                profile = instaloader.Profile.from_username(bot.context, 'users')
+                                posts = profile.get_posts()
+                                for index, post in enumerate(posts, 1):
+                                    bot.download_post(post, target=f"{profile.username}_{index}")
 
-                        def ghost_follow(users):
-                            USER = users
-                            PROFILE = USER
+                            def ghost_follow(users):
+                                USER = users
+                                PROFILE = USER
 
-                            bot.load_session_from_file(USER)
+                                bot.load_session_from_file(USER)
 
-                            profile = instaloader.Profile.from_username(bot.context, PROFILE)
+                                profile = instaloader.Profile.from_username(bot.context, PROFILE)
 
-                            likes = set()
-                            print("Fetching likes of all posts of profile {}.".format(profile.username))
-                            for post in profile.get_posts():
-                                print(post)
-                                likes = likes | set(post.get_likes())
+                                likes = set()
+                                print("Fetching likes of all posts of profile {}.".format(profile.username))
+                                for post in profile.get_posts():
+                                    print(post)
+                                    likes = likes | set(post.get_likes())
 
-                            print("Fetching followers of profile {}.".format(profile.username))
-                            followers = set(profile.get_followers())
+                                print("Fetching followers of profile {}.".format(profile.username))
+                                followers = set(profile.get_followers())
 
-                            ghosts = followers - likes
+                                ghosts = followers - likes
 
-                            print("Storing ghosts into file.")
-                            with open("result/inactive-users.txt", 'w') as f:
-                                for ghost in ghosts:
-                                    print(ghost.username, file=f)
-                        def main_scraper():
-                            clear()
-                            banner_ms()
-                            print(' %s Account Info'%MAIN_LIST('01'))
-                            print(' %s Instagram Login'%MAIN_LIST('02'))
-                            print(' %s Scrap Follow '%MAIN_LIST('03'))
-                            print(' %s Download Post'%MAIN_LIST('04'))
-                            print(' %s Ghost Followers'%MAIN_LIST('05'))
-                            try:
-                                x = int(input_drg(promt_choice))
-                                if x == 1:
-                                    clear()
-                                    banner_ms()
-                                    try:
-                                        res = input_drg(f'{PULS} Instagram Name: ')
+                                print("Storing ghosts into file.")
+                                with open("result/inactive-users.txt", 'w') as f:
+                                    for ghost in ghosts:
+                                        print(ghost.username, file=f)
+                            def main_scraper():
+                                clear()
+                                banner_ms()
+                                print(' %s Account Info'%MAIN_LIST('01'))
+                                print(' %s Instagram Login'%MAIN_LIST('02'))
+                                print(' %s Scrap Follow '%MAIN_LIST('03'))
+                                print(' %s Download Post'%MAIN_LIST('04'))
+                                print(' %s Ghost Followers'%MAIN_LIST('05'))
+                                try:
+                                    x = int(input_drg(promt_choice))
+                                    if x == 1:
+                                        clear()
+                                        banner_ms()
                                         try:
+                                            res = input_drg(f'{PULS} Instagram Name: ')
+                                            try:
+                                                if res == '' or len(res) == '2':
+                                                    print(f'{ERRORS} try again.')
+                                                    time.sleep(2)
+                                                    main_scraper()
+                                                ig_info(res)
+                                            except:
+                                                sys.exit(f'{ERROR_SYM} Username not found!')
+                                        except KeyboardInterrupt:
+                                            sys.exit(f'{Aborted}')
+                                    elif x == 2:ig_login()
+                                    elif x == 3:scrap_foll()
+                                    elif x == 4:
+                                        clear()
+                                        banner_ms()
+                                        try:
+                                            res = input_drg(f'{PULS} Instagram Name: ')
+
                                             if res == '' or len(res) == '2':
                                                 print(f'{ERRORS} try again.')
                                                 time.sleep(2)
                                                 main_scraper()
-                                            ig_info(res)
-                                        except:
-                                            sys.exit(f'{ERROR_SYM} Username not found!')
-                                    except KeyboardInterrupt:
-                                        sys.exit(f'{Aborted}')
-                                elif x == 2:ig_login()
-                                elif x == 3:scrap_foll()
-                                elif x == 4:
-                                    clear()
-                                    banner_ms()
-                                    try:
-                                        res = input_drg(f'{PULS} Instagram Name: ')
-
-                                        if res == '' or len(res) == '2':
-                                            print(f'{ERRORS} try again.')
-                                            time.sleep(2)
-                                            main_scraper()
-                                        ig_downloader(res)
-                                    except KeyboardInterrupt:
-                                        sys.exit(f'{Aborted}')
-                                elif x == 5:
-                                    clear()
-                                    banner_ms()
-                                    try:
-                                        res = input_drg(f'{PULS} Instagram Name: ')
+                                            ig_downloader(res)
+                                        except KeyboardInterrupt:
+                                            sys.exit(f'{Aborted}')
+                                    elif x == 5:
+                                        clear()
+                                        banner_ms()
                                         try:
-                                            if res == '' or len(res) == '2':
-                                                print(f'{ERRORS} try again.')
-                                                time.sleep(2)
-                                                main_scraper()
-                                            ghost_follow(res)
-                                        except Exception as e:
-                                            sys.exit(f'{ERROR_SYM} {e}')
-                                    except KeyboardInterrupt:
-                                        sys.exit(f'{Aborted}')
-                            except KeyboardInterrupt:
-                                sys.exit(f'{Aborted}')
-                            except ValueError:
-                                sys.exit(f'{NFound}')
-                        main_scraper()
+                                            res = input_drg(f'{PULS} Instagram Name: ')
+                                            try:
+                                                if res == '' or len(res) == '2':
+                                                    print(f'{ERRORS} try again.')
+                                                    time.sleep(2)
+                                                    main_scraper()
+                                                ghost_follow(res)
+                                            except Exception as e:
+                                                sys.exit(f'{ERROR_SYM} {e}')
+                                        except KeyboardInterrupt:
+                                            sys.exit(f'{Aborted}')
+                                except KeyboardInterrupt:
+                                    sys.exit(f'{Aborted}')
+                                except ValueError:
+                                    sys.exit(f'{NFound}')
+                            main_scraper()
                         
                     elif x == 2:
 
