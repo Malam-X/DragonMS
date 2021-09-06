@@ -1,5 +1,6 @@
 import time
 from etc.version import __version__
+from colorama import Fore
 try:
     from colorama import Fore
 except ImportError:
