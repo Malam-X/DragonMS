@@ -365,7 +365,7 @@ def about_me():
          - Google Scrapper
          - Dork maker
          - Dork scanner
-      - [NEWS] Pentesting Tools (0.5)
+      - [NEW] Pentesting Tools (0.5)
          - Web Cloning (wget)
          - Mass WP Shell Uploader
       - [UPDATE] News Design, Easy to Use.
