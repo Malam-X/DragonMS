@@ -228,14 +228,14 @@ def banner_drgn():
     %s    GitHub : %shttps://github.com/malam-x
     %s    YouTube: %sDR4G Clew
     %s    Website: %sanimcra.tech
-    %s    Greetz to dark coder: %sb4ltazar, d3hydr8
+
         [NEWS] Added Pentest Tools.%s
     """%(fm,fb,fm,fb,fm,fb,fm,fb,fc,fm,
         sb,fg,
         sb,fm,
         sb,fb,
         sb,fb,
-        sb,fr,
+        
         fw)
     for line in BANNER.split("\n"):
         print(line)
