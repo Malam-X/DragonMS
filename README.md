@@ -13,70 +13,87 @@
 
 ## Requirements
 
--   Python 3.7+
--   Golang
+- Python 3.7+
+- Golang
 
 ## Tested On
 
--   Windows 10
--   MxLinux
--   Ubuntu
--   Debian/Parrot OS
+- Windows 10
+- MxLinux
+- Ubuntu
+- Debian/Parrot OS
 
 ## Features
 
--   Payload Msfvenom/Metasploit
-    -   Windows
-    -   Linux
-    -   Android
-    -   Macs
-    -   Scripts
-    -   Shells
-    -   Website
--   DDOS
-    -   UDP FLOOD
-    -   HTTP FLOOD(Golang)
--   SCANNER
--   SCRAPING
-    -   Web Scraping
-    -   Instagram Scraping
-    -   Twitter Scraping
-    -   Wikipedia Sraping<br>
-
--   Bitcoin Mining
--   Url shortener
--   Track
-    -   Cyber-crime API
--   Pentesting Tools
-    -   Web Cloning Using wget
-    -   Mass WP Shell uploader
+- Payload Msfvenom/Metasploit
+    - Windows
+    - Linux
+    - Android
+    - Macs
+    - Scripts
+    - Shells
+    - Website
+- DDOS
+    - UDP FLOOD
+    - HTTP FLOOD(Golang)
+- SCANNER
+- SCRAPING
+    - Web Scraping
+    - Instagram Scraping
+    - Twitter Scraping
+    - Wikipedia Sraping
+- Bitcoin Mining
+- Url shortener
+- Track
+    - Cyber-crime API
+- Pentesting Tools
+    - Web Cloning Using wget
+    - Mass WP Shell uploader
+    - Shell Finder
+    - Google Scanner
+    - Google Scrapper
+    - Dork maker
+    - Dork scanner
 <br>
+
+<p align="center">
+    <img src="https://github.com/Malam-X/DragonMS/blob/main/dragonms2.png"><br>
+</p><br>
+
 
 # INSTALLER
 
 #### Install Python3
-`   sudo apt install python3`
+` sudo apt install python3`
 #### Install PIP
-`   sudo apt install python3-pip`
+` sudo apt install python-pip`
 #### Install Golang
-`   sudo apt-get install golang-go`
+` sudo apt install go`
 
 ## Clong this repository
 
 ###### *Cloning*
 ```
-    git clone https://github.com/Malam-X/DragonMS
-    cd DragonMS
+  git clone https://github.com/Malam-X/DragonMS
+  cd DragonMS
 ```
 ###### *Run DragonMS*
 ```
-    python3 main.py
+  python3 main.py
 ```
+
 <br>
 <br>
 
 ```
-    Disclaimer:- This project was created for educational purposes and
-    should not be used in environments without legal authorization. 
-    Author will be not responsible for any damage!
+  Disclaimer:- This project was created for educational purposes and
+  should not be used in environments without legal authorization. 
+  Author will be not responsible for any damage!
 ```
+
+##### *Youtube: DR4G0N5*
+` DR4G Clew`
+##### *Website*
+` http://animcra.tech/` 
+##### *GitHub: DR4G0N5*
+` https://github.com/Malam-X/`
