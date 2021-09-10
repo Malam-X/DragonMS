@@ -70,9 +70,6 @@
 #### Install Golang
 ` sudo apt install go`
 
-## Clong this repository
-
-###### *Cloning*
 ```
   git clone https://github.com/Malam-X/DragonMS
   cd DragonMS
