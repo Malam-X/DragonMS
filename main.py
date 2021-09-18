@@ -35,18 +35,13 @@ from lib.tools.Shell import back_shell
 from lib.tools.Android import back_android
 from lib.list import *
 def INSTALLER():
-    os.system('pip install kivy')
     try:
         MODULESs = ['requests', 'hashlib', 'pytube', 'pandas', 'bs4', 'colorama', 'twint', 'wikipedia', 
         'cybercrimetracker', 'scapy', 'instaloader', 'wget']
-        ADRN = ['requests', 'hashlib', 'pytube', 'pandas', 'bs4', 'colorama', 'twint', 'wikipedia', 
-        'cybercrimetracker', 'scapy', 'wget']
         for MODULES in MODULESs:
             try:
                 if(sys.version_info[0] < 3):
                     os.system('cd C:\Python27\Scripts & pip install {}'.format(MODULES))
-                elif Kivy_Platform == 'android':
-                    os.system('pip install {}'.format(ADRN))
                 else:
                     os.system('pip install {}'.format(MODULES))
                 print(' [+] {} has been installed successfully, Restart the program.'.format(MODULES))
@@ -82,7 +77,7 @@ try:
     from urllib.parse import urlparse
     from urllib.parse import urlencode
     from urllib.request import urlopen
-    from kivy.utils import platform as Kivy_Platform
+    #from kivy.utils import platform as Kivy_Platform
     from cybercrimetracker.cybercrimeTrackerAPI import cybercrimeTrackerAPI
     init(autoreset=True)
     requests.packages.urllib3.disable_warnings()
