@@ -56,11 +56,6 @@
     - Dork scanner
 <br>
 
-<p align="center">
-    <img src="https://github.com/Malam-X/DragonMS/blob/main/dragonms2.png"><br>
-</p><br>
-
-
 # INSTALLER
 
 #### Install Python3
