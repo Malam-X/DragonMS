@@ -34,62 +34,52 @@ from lib.tools.Script import back_script
 from lib.tools.Shell import back_shell
 from lib.tools.Android import back_android
 from lib.list import *
-def INSTALLER():
-    try:
-        MODULESs = ['requests', 'hashlib', 'pytube', 'pandas', 'bs4', 'colorama', 'twint', 'wikipedia', 
-        'cybercrimetracker', 'scapy', 'instaloader', 'wget']
-        for MODULES in MODULESs:
-            try:
-                if(sys.version_info[0] < 3):
-                    os.system('cd C:\Python27\Scripts & pip install {}'.format(MODULES))
-                else:
-                    os.system('pip install {}'.format(MODULES))
-                print(' [+] {} has been installed successfully, Restart the program.'.format(MODULES))
-                print(' ')
-            except:
-                print(' [-] Install {} manually.'.format(MODULES))
-                print(' ')
-    except:
-        pass
 
 # - Import Library
 try:
-    import re, datetime, os.path, wget 
+    import re, datetime, os.path
     import sys,os,json, socket, time
     import requests, base64,contextlib
     import urllib.request
     import instaloader,getpass,twint
     import pandas as pd
     import urllib3, subprocess
-    from random import randint
-    from pytube import YouTube
-    from sys import stdout
-    from collections import Counter
-    from bs4 import BeautifulSoup
-    from hashlib import sha256
-    from colorama import Fore
-    from colorama import Style
-    from pprint import pprint
-    from colorama import init
-    from functools import partial
-    from multiprocessing import Pool
-    from googlesearch import search
-    from urllib.parse import urlparse
-    from urllib.parse import urlencode
-    from urllib.request import urlopen
-    #from kivy.utils import platform as Kivy_Platform
-    from cybercrimetracker.cybercrimeTrackerAPI import cybercrimeTrackerAPI
-    init(autoreset=True)
-    requests.packages.urllib3.disable_warnings()
 except ImportError:
+    def INSTALLER():
+        try:
+            MODULESs = ['requests', 'hashlib', 'pytube', 'pandas', 'bs4', 'colorama', 'twint', 'wikipedia', 
+            'cybercrimetracker', 'scapy', 'instaloader']
+            for MODULES in MODULESs:
+                try:
+                    if(sys.version_info[0] < 3):os.system('cd C:\Python27\Scripts & pip install {}'.format(MODULES))
+                    else:os.system('pip install {}'.format(MODULES))
+                    print(' [+] {} has been installed successfully, Restart the program.\n'.format(MODULES))
+                except:print(' [-] Install {} manually.\n'.format(MODULES))
+        except:pass
     print(' [!] Please install Some requirements.\n [+] Press Enter for Installer!\n [!] CTRL+C For Exit!')
     xxXxxxxx = input('')
-    if '' in xxXxxxxx:
-        INSTALLER()
-    else:
-        clear()
-        sys.exit(0)
+    if '' in xxXxxxxx:INSTALLER()
+    else:sys.exit('\n')
 
+from random import randint
+from pytube import YouTube
+from sys import stdout
+from collections import Counter
+from bs4 import BeautifulSoup
+from hashlib import sha256
+from colorama import Fore
+from colorama import Style
+from pprint import pprint
+from colorama import init
+from functools import partial
+from multiprocessing import Pool
+#from googlesearch import search
+from urllib.parse import urlparse
+from urllib.parse import urlencode
+from urllib.request import urlopen
+from cybercrimetracker.cybercrimeTrackerAPI import cybercrimeTrackerAPI
+init(autoreset=True)
+requests.packages.urllib3.disable_warnings()
 headers = {'Connection': 'keep-alive',
            'Cache-Control': 'max-age=0',
            'Upgrade-Insecure-Requests': '1',
@@ -205,8 +195,6 @@ promt_target = ' \u001b[1m[\u001b[32;1m+\u001b[0m\u001b[1m] Target\u001b[0m: '
 PULS         = '\u001b[1m[\u001b[32;1m+\u001b[0m\u001b[1m]\u001b[0m'
 MINS         = '\u001b[1m[\u001b[31m-\u001b[0m\u001b[1m]\u001b[0m'
 ERRORS       = '\u001b[1m[\u001b[31mERROR!\u001b[0m\u001b[1m]\u001b[0m'
-private_ip   = socket.gethostbyname(socket.gethostname())
-hostname     = socket.gethostname()
 ERROR_SYM    = '[\u001b[31m✘\u001b[0m]'
 SUCES_SYM    = '[\u001b[32;1m✔\u001b[0m]'
 NFound       = '\n\u001b[1m[\u001b[31mNot Found Choice!\u001b[0m\u001b[1m]\u001b[0m'
@@ -239,6 +227,7 @@ ERROR_MSG   = '\u001b[1m[u001b[1m[\u001b[31mERROR\u001b[0m\u001b[1m]\u001b[0m'
 WARNING_MSG = fy+'[WARN]'
 SUCCESS_MSG = fy+'[SUCCESS]'
 IP_NOTFOUND = '\n\u001b[1m[\u001b[31mNOT FOUND IP!\u001b[0m\u001b[1m]\u001b[0m'
+vmains = ''
 
 def CHECK_INTERNET():
     global Internet
