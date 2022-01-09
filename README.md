@@ -1,7 +1,7 @@
 ## ***:star: DragonMS***
 <p align="center">
-  <img src="https://github.com/Malam-X/DragonMS/blob/main/dragonms.png"><br>
-  <img src="https://img.shields.io/badge/Version-v0.8-blue">
+  <img src="https://github.com/Malam-X/DragonMS/blob/main/DragonMS.png"><br>
+  <img src="https://img.shields.io/badge/Version-v1.3-blue">
   <img src="https://img.shields.io/badge/Python-v3.7%2B-blue">
   <img src="https://komarev.com/ghpvc/?username=Malam-X&label=Views&color=blue&style=plastic">
 </p>
@@ -20,12 +20,14 @@
 
 - Windows 10
 - MxLinux
-- Ubuntu
-- Debian/Parrot OS
+- Ubuntu 18/20 LTS
+- Parrot OS
+- ElementaryOS
+- Kali
 
 ## Features
 
-- Payload Msfvenom/Metasploit
+- Payload Metasploit
     - Windows
     - Linux
     - Android
@@ -35,57 +37,74 @@
     - Website
 - DDOS
     - UDP FLOOD
-    - HTTP FLOOD(Golang)
-- SCANNER
+    - HTTP FLOOD
 - SCRAPING
-    - Web Scraping
     - Instagram Scraping
     - Twitter Scraping
     - Wikipedia Sraping
 - Bitcoin Mining
 - Url shortener
-- Track
-    - Cyber-crime API
+- Cyber-crime API
 - Pentesting Tools
-    - Web Cloning Using wget
+    - Web Cloning (wget)
     - Mass WP Shell uploader
     - Shell Finder
     - Google Scanner
     - Google Scrapper
     - Dork maker
     - Dork scanner
+- Adf.ly BOT
+- Telnet Brute Force
+- Code Finder
 <br>
 
 # INSTALLER
 
 #### Install Python3
-` sudo apt install python3`
+`sudo apt install python3`
 #### Install PIP
-` sudo apt install python-pip`
+`sudo apt install python-pip`
 #### Install Golang
-` sudo apt install go`
+`sudo apt install go`
 
+###### *Clone*
 ```
-  git clone https://github.com/Malam-X/DragonMS
-  cd DragonMS
+git clone https://github.com/Malam-X/DragonMS
+cd DragonMS
 ```
 ###### *Run DragonMS*
 ```
-  python3 main.py
+python3 main.py
 ```
 
 <br>
 <br>
 
-```
-  Disclaimer:- This project was created for educational purposes and
-  should not be used in environments without legal authorization. 
-  Author will be not responsible for any damage!
-```
+### Author
+`DR4G0N5`
+`Q3N`
 
-##### *Youtube: DR4G0N5*
-` DR4G Clew`
+### Credits
+`LeeOn`
+`Aman`
+`LAKER`
+`Makman`
+`d3hydr8`
+
+### ON Team
+`NC`
+`Bali BlackHat`
+`TSecNetwork`
+
+##### *Youtube*
+`DR4G Clew`
 ##### *Website*
-` http://animcra.tech/` 
+`Under development`
 ##### *GitHub: DR4G0N5*
-` https://github.com/Malam-X/`
+`https://github.com/Malam-X/`
+
+```
+Disclaimer:- This project was created for educational purposes and
+should not be used in environments without legal authorization.
+Author will be not responsible for any damage!
+```

