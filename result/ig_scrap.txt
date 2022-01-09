@@ -1,8 +1,0 @@
-
-        [+] Username   : don1_dr
-        [+] User ID    : 25525391082
-        [+] Followers  : 139
-        [+] Followees  : 16
-        [+] Bio        : ('tidak ada', None)
-        [+] Total Post : 0
-            
